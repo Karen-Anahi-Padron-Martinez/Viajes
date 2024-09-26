@@ -13,8 +13,8 @@ import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-
   templateUrl: './nuevoexp.component.html',
   styles: ``
 })
-export class NuevoexpComponent implements OnInit{
-  //formulario reactivo
+export class NuevoexpComponent implements OnInit {
+  // formulario reactivo
   public experienciaForm = new FormGroup({
     id: new FormControl<string>(''),
     nombre: new FormControl<string>(''),
@@ -25,80 +25,77 @@ export class NuevoexpComponent implements OnInit{
     contacto: new FormControl<string>(''),
     alt_img: new FormControl<string>(''),
   });
+
   constructor(
     private experienciasService: ExperienciasService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
-  ){}
+  ) {}
 
-  get currentExperiencia():Experiencia{
+  get currentExperiencia(): Experiencia {
     const experiencia = this.experienciaForm.value as Experiencia;
     return experiencia;
   }
 
-  ngOnInit():void {
-
-    if (!this.router.url.includes('editarexp') ) return;
+  ngOnInit(): void {
+    if (!this.router.url.includes('editarexp')) return;
 
     this.activatedRoute.params
-    .pipe(
-      switchMap( ({ id }) => this.experienciasService.getExperienciaById( id) ),
-    ).subscribe(experiencia =>{
-
-      if ( !experiencia ) {
-        return this.router.navigateByUrl('/');
-      }
-      this.experienciaForm.reset( experiencia );
-      return;
-    });
-
+      .pipe(
+        switchMap(({ id }) => this.experienciasService.getExperienciaById(id)),
+      )
+      .subscribe(experiencia => {
+        if (!experiencia) {
+          return this.router.navigateByUrl('/');
+        }
+        this.experienciaForm.reset(experiencia);
+        return;
+      });
   }
-  onSubmit():void {
-    if ( this.experienciaForm.invalid ) return;
-    if ( this.currentExperiencia.id) {
-      this.experienciasService.updateExperiencia( this.currentExperiencia )
-      .subscribe( experiencia => {
-        this.showSnackbar(`${ experiencia.nombre } updated`);
-      } );
+
+  onSubmit(): void {
+    if (this.experienciaForm.invalid) return;
+    if (this.currentExperiencia.id) {
+      this.experienciasService.updateExperiencia(this.currentExperiencia)
+        .subscribe(() => {
+          this.showSnackbar(`Experiencia Actualizada Correctamente`);
+        });
       return;
     }
-    this.experienciasService.addExperiencia( this.currentExperiencia )
-    .subscribe( experiencia => {
-      // TODO: mostrar snackbar y navegar a administrador/editar/experiencia.id
-      this.router.navigate(['/administrador/editarexp', experiencia.id]);
-      this.showSnackbar(`${ experiencia.nombre } created`);
+    this.experienciasService.addExperiencia(this.currentExperiencia)
+      .subscribe(() => {
+        this.router.navigate(['/administrador/listatra']);
+        this.showSnackbar(`Experiencia Guardada Correctamente`);
+      });
+  }
+
+  showSnackbar(message: string): void {
+    this.snackbar.open(message, 'Listo', {
+      duration: 2500,
+    });
+  }
+
+  onDeleteExperiencia(): void {
+    if (!this.currentExperiencia.id) throw Error('Experiencia id es required');
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: this.experienciaForm.value,
     });
 
-  }
-  showSnackbar(message: string ):void{
-    this.snackbar.open( message, 'done',{
-      duration: 2500,
-    })
-  }
-  onDeleteExperiencia(){
-    if ( !this.currentExperiencia.id ) throw Error('Experiencia id es required')
-      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-        data:this.experienciaForm.value
-      });
-
-      dialogRef.afterClosed()
-       .pipe(
+    dialogRef.afterClosed()
+      .pipe(
         filter((result: boolean) => result),
-        switchMap( () => this.experienciasService.deleteExperienciaById( this.currentExperiencia.id)),
-        tap( wasDeleted => console.log({ wasDeleted})),
-       )
-       .subscribe(result =>{
-          this.router.navigate(['administrador/listatra'])
-       })
+        switchMap(() => this.experienciasService.deleteExperienciaById(this.currentExperiencia.id)),
+        tap(wasDeleted => console.log({ wasDeleted })),
+      )
+      .subscribe(() => {
+        this.router.navigate(['/administrador/listatra']);
+        this.showSnackbar(`Experiencia Eliminada Correctamente`);
+      });
   }
 
-
-  goBack():void{
-    this.router.navigateByUrl('administrador/listatra')
+  goBack(): void {
+    this.router.navigateByUrl('administrador/listatra');
   }
-
 }
-
-

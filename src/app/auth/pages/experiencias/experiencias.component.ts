@@ -25,7 +25,11 @@ export class ExperienciasComponent implements OnInit {
   ngOnInit(): void {
 
     this.experienciasService.getExperiencias()
-    .subscribe(experiencias => this.experiencias = experiencias);
+    .subscribe(experiencias => {
+      this.experiencias = experiencias.filter(experiencia=>
+        experiencia.nombre.trim().toLowerCase() !== 'no especificado'
+      )
+    });
 
     this.atractivosService.getAtractivos()  //Add this line.
     .subscribe(atractivos => this.atractivos = atractivos);

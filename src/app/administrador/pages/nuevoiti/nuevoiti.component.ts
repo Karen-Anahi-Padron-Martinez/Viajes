@@ -170,40 +170,59 @@ export class NuevoitiComponent implements OnInit{
   onSubmit():void {
     if ( this.itinerarioForm.invalid ) return;
     if ( this.currentItinerario.id) {
-      this.itinerariosService.updateItinerario( this.currentItinerario )
+      this.itinerariosService.updateItinerario(this.currentItinerario)
       .subscribe( itinerario => {
-        this.showSnackbar(`${ itinerario.nombre } Actualizado`);
+        this.showSnackbar(`Itinerario Actualizado Correctamente`);
       } );
       return;
     }
     this.itinerariosService.addItinerario( this.currentItinerario )
-    .subscribe( itinerario => {
-      // TODO: mostrar snackbar y navegar a administrador/editar/itinerario.id
-      this.router.navigate(['/administrador/editariti', itinerario.id]);
-      this.showSnackbar(`${ itinerario.nombre } Creado`);
+    .subscribe(() => {
+      this.router.navigate(['/administrador/listpaq']);
+      this.showSnackbar(`Itinerario Guardado Correctamente`);
     });
 
   }
   showSnackbar(message: string ):void{
-    this.snackbar.open( message, 'done',{
+    this.snackbar.open( message, 'Listo',{
       duration: 2500,
     })
   }
-  onDeleteItinerario(){
-    if ( !this.currentItinerario.id ) throw Error('Itinerario id es required')
-      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-        data:this.itinerarioForm.value
-      });
+  // onDeleteItinerario(){
+  //   if ( !this.currentItinerario.id ) throw Error('Itinerario id es required')
+  //     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+  //       data:this.itinerarioForm.value
+  //     });
 
-      dialogRef.afterClosed()
-       .pipe(
-        filter((result: boolean) => result),
-        switchMap( () => this.itinerariosService.deleteItinerarioById( this.currentItinerario.id)),
-        tap( wasDeleted => console.log({ wasDeleted})),
-       )
-       .subscribe(result =>{
-          this.router.navigate(['administrador/listpaq'])
-       })
+  //     dialogRef.afterClosed()
+  //      .pipe(
+  //       filter((result: boolean) => result),
+  //       switchMap( () => this.itinerariosService.deleteItinerarioById( this.currentItinerario.id)),
+  //       tap( wasDeleted => console.log({ wasDeleted})),
+  //      )
+  //      .subscribe(result =>{
+  //         this.router.navigate(['administrador/listpaq'])
+  //      })
+  // }
+  onDeleteItinerario(): void {
+    if (!this.currentItinerario.id) return;
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Eliminar Itinerario',
+        message: `¿Está seguro de eliminar el itinerario?`,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.itinerariosService.deleteItinerarioById(this.currentItinerario.id)
+          .subscribe(() => {
+            this.showSnackbar(`Itinerario Eliminado Correctamente`);
+            this.router.navigateByUrl('/administrador/listpaq');
+          });
+      }
+    });
   }
 
   goBack():void{

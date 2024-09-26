@@ -23,7 +23,11 @@ export class ListatraComponent implements OnInit {
     .subscribe(atractivos => this.atractivos = atractivos);
 
     this.experienciasService.getExperiencias()
-    .subscribe(experiencias => this.experiencias = experiencias);
+    .subscribe(experiencias => {
+      this.experiencias = experiencias.filter(experiencia=>
+        experiencia.nombre.trim().toLowerCase() !== 'no especificado'
+      )
+    });
   }
 
 }

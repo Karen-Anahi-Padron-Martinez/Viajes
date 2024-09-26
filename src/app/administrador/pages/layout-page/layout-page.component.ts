@@ -37,6 +37,7 @@ export class LayoutPageComponent {
     {label:'Añadir Atractivo', icon:'add', url:'./nuevoatra'},
     // {label:'Buscar Atractivo', icon:'search', url:'./buscaratra'},
     {label:'Añadir Experiencia', icon:'add', url:'./nuevoexp'},
+    {label:'Ubicacion Usuario', icon:'location_on',url:'./mapita'},
     // {label:'Buscar Experiencia', icon:'search', url:'./buscarexp'},
   ]
 }

@@ -10,7 +10,7 @@ export class AdministradorServices {
 
 
   // Base URL backend
-  private baseUrl: string = 'http://localhost:3000';
+  private baseUrl: string = 'https://backend-production-70c9.up.railway.app';
 
   constructor ( private http: HttpClient ) { }
 

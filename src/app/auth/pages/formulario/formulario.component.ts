@@ -9,6 +9,7 @@ import { AgenciasService } from '../../services/agencia.service';
 import { Atractivo } from '../../interfaces/atractivo.interface';
 import { AtractivosService } from '../../services/atractivo.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { enviroments } from '../../../../enviroments/enviroments';
 
 @Component({
   selector: 'app-formulario',
@@ -31,7 +32,8 @@ export class FormularioComponent implements OnInit {
   public telefono: string = '';
   public fechaInicial: Date = new Date();
   public transporte: string = '';
-  private apiUrl: string = 'http://localhost:3001/api/email';
+  private apiUrl: string = enviroments.baseUrl + '/api/email';
+  // private apiUrl: string = 'http://localhost:3001/api/email';
   public mensajeExito: string = ''; // Variable para el mensaje de éxito
 
   constructor(
@@ -47,7 +49,8 @@ export class FormularioComponent implements OnInit {
     this.hotelesService.getHoteles().subscribe(hoteles => this.hoteles = hoteles);
     this.restaurantesService.getRestaurantes().subscribe(restaurantes => this.restaurantes = restaurantes);
     this.atractivosService.getAtractivos().subscribe(atractivos => this.atractivos = atractivos);
-    this.agenciasService.getAgencias().subscribe(agencias => {
+    this.agenciasService.getAgencias()
+    .subscribe(agencias => {
       this.agencias = agencias;
       this.agencias.forEach(agencia => agencia.selected = false);
     });
@@ -75,6 +78,11 @@ export class FormularioComponent implements OnInit {
   }
 
   enviarFormulario(): void {
+    if (!this.nombre || !this.correo || !this.telefono) {
+      window.alert('Por favor, complete los campos de Nombre, Correo y Teléfono antes de enviar el formulario.');
+      return;
+    }
+
     const agenciaSeleccionada = this.agencias.find(a => a.selected);
 
     if (!agenciaSeleccionada) {
@@ -100,6 +108,8 @@ export class FormularioComponent implements OnInit {
       fechaInicial: fechaInicialISO, // Enviar fecha en formato ISO
       transporte: this.transporte,
     };
+
+    console.log(seleccionados); // console
 
     this.http.post(this.apiUrl, seleccionados, { responseType: 'json' })
       .subscribe(

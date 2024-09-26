@@ -13,6 +13,7 @@ export class LayoutPageComponent {
     {label:'Paquetes', icon:'folder', url:'./paquetes'},
     {label:'Paquete personalizado', icon:'folder_open', url:'./formulario'},
     {label:'Contacto Agencias', icon:'assistant', url:'./agencias'},
+    {label:'Ubicacion',icon:'location_on',url:'./mapa'},
     {label:'Administrador', icon:'label_important', url:'./login'},
   ]
 }

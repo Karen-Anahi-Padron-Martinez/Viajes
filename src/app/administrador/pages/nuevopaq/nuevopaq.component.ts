@@ -25,7 +25,7 @@ export class NuevopaqComponent implements OnInit {
     nombre: new FormControl<string>(''),
     descripcion: new FormControl<string>(''),
     dia: new FormControl<string>(''),
-    noche:new  FormControl<string>(''),
+    noche: new FormControl<string>(''),
     hotel: new FormControl<string>(''),
     restaurante: new FormControl<string>(''),
     experiencia: new FormControl<string>(''),
@@ -40,7 +40,7 @@ export class NuevopaqComponent implements OnInit {
     private router: Router,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
-  ){}
+  ) {}
 
   get currentPaquete(): Paquete {
     const paquete = this.paqueteForm.value as Paquete;
@@ -71,32 +71,32 @@ export class NuevopaqComponent implements OnInit {
 
     if (this.currentPaquete.id) {
       this.paquetesService.updatePaquete(this.currentPaquete)
-        .subscribe(paquete => {
-          this.showSnackbar(`${paquete.nombre} Actualizado`);
-          this.router.navigate(['/administrador/listpaq']);
+        .subscribe(() => {
+          this.showSnackbar(`Paquete Actualizado Correctamente`);
         });
       return;
     }
 
     this.paquetesService.addPaquete(this.currentPaquete)
-      .subscribe(paquete => {
-        this.router.navigate(['/administrador/editarpaq', paquete.id]);
-        this.showSnackbar(`${paquete.nombre} Guardado`);
+      .subscribe(() => {
+        this.router.navigate(['/administrador/listpaq']);
+        this.showSnackbar(`Paquete Guardado Correctamente`);
       });
   }
 
   showSnackbar(message: string): void {
-    this.snackbar.open(message, 'done', {
+    this.snackbar.open(message, 'Listo', {
       duration: 2500,
     });
   }
+
   onDeletePaquete(): void {
     if (!this.currentPaquete.id) return;
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Eliminar Paquete',
-        message: `¿Estás seguro de eliminar el paquete ${this.currentPaquete.nombre}?`,
+        message: `¿Está seguro de eliminar el paquete?`,
       },
     });
 
@@ -104,8 +104,8 @@ export class NuevopaqComponent implements OnInit {
       if (result) {
         this.paquetesService.deletePaqueteById(this.currentPaquete.id)
           .subscribe(() => {
-            this.showSnackbar(`Paquete eliminado`);
-            this.router.navigateByUrl('/administrador');
+            this.showSnackbar(`Paquete Eliminado Correctamente`);
+            this.router.navigateByUrl('/administrador/listpaq');
           });
       }
     });
@@ -115,4 +115,3 @@ export class NuevopaqComponent implements OnInit {
     this.router.navigateByUrl('/administrador/listpaq');
   }
 }
-

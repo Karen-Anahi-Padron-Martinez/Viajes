@@ -45,6 +45,7 @@ import { AtractivoComponent } from './components/card/atractivo/atractivo.compon
 import { ListatraComponent } from './pages/listatra/listatra.component';
 import { ItinerarioComponent } from './components/card/itinerario/itinerario.component';
 import { RegistroComponent } from './pages/registro/registro.component';
+import { MapapageComponent } from './pages/mapapage/mapapage.component';
 
 
 
@@ -92,6 +93,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
     ListatraComponent,
     ItinerarioComponent,
     RegistroComponent,
+    
 
   ],
   imports: [

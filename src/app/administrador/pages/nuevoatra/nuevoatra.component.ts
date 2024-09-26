@@ -13,8 +13,8 @@ import { AtractivosService } from '../../services/atractivo.service';
   templateUrl: './nuevoatra.component.html',
   styles: ``
 })
-export class NuevoatraComponent implements OnInit{
-  //formulario reactivo
+export class NuevoatraComponent implements OnInit {
+  // formulario reactivo
   public atractivoForm = new FormGroup({
     id: new FormControl<string>(''),
     nombre: new FormControl<string>(''),
@@ -31,79 +31,77 @@ export class NuevoatraComponent implements OnInit{
     servicio: new FormControl<string>(''),
     alt_img: new FormControl<string>(''),
   });
+
   constructor(
     private atractivosService: AtractivosService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
-  ){}
+  ) {}
 
-  get currentAtractivo():Atractivo{
+  get currentAtractivo(): Atractivo {
     const atractivo = this.atractivoForm.value as Atractivo;
     return atractivo;
   }
 
-  ngOnInit():void {
-
-    if (!this.router.url.includes('editaratra') ) return;
+  ngOnInit(): void {
+    if (!this.router.url.includes('editaratra')) return;
 
     this.activatedRoute.params
-    .pipe(
-      switchMap( ({ id }) => this.atractivosService.getAtractivoById( id) ),
-    ).subscribe(atractivo =>{
-
-      if ( !atractivo ) {
-        return this.router.navigateByUrl('/');
-      }
-      this.atractivoForm.reset( atractivo );
-      return;
-    });
-
+      .pipe(
+        switchMap(({ id }) => this.atractivosService.getAtractivoById(id)),
+      )
+      .subscribe(atractivo => {
+        if (!atractivo) {
+          return this.router.navigateByUrl('/');
+        }
+        this.atractivoForm.reset(atractivo);
+        return;
+      });
   }
-  onSubmit():void {
-    if ( this.atractivoForm.invalid ) return;
-    if ( this.currentAtractivo.id) {
-      this.atractivosService.updateAtractivo( this.currentAtractivo )
-      .subscribe( atractivo => {
-        this.showSnackbar(`${ atractivo.nombre } editado`);
-      } );
+
+  onSubmit(): void {
+    if (this.atractivoForm.invalid) return;
+    if (this.currentAtractivo.id) {
+      this.atractivosService.updateAtractivo(this.currentAtractivo)
+        .subscribe(() => {
+          this.showSnackbar(`Atractivo Actualizado Correctamente`);
+        });
       return;
     }
-    this.atractivosService.addAtractivo( this.currentAtractivo )
-    .subscribe( atractivo => {
-      // TODO: mostrar snackbar y navegar a administrador/editar/atractivo.id
-      this.router.navigate(['/administrador/editaratra', atractivo.id]);
-      this.showSnackbar(`${ atractivo.nombre } añadido`);
+    this.atractivosService.addAtractivo(this.currentAtractivo)
+      .subscribe(() => {
+        this.router.navigate(['/administrador/listatra']);
+        this.showSnackbar(`Atractivo Guardado Correctamente`);
+      });
+  }
+
+  showSnackbar(message: string): void {
+    this.snackbar.open(message, 'Listo', {
+      duration: 2500,
+    });
+  }
+
+  onDeleteAtractivo(): void {
+    if (!this.currentAtractivo.id) throw Error('Atractivo id es required');
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: this.atractivoForm.value,
     });
 
-  }
-  showSnackbar(message: string ):void{
-    this.snackbar.open( message, 'listo',{
-      duration: 2500,
-    })
-  }
-  onDeleteAtractivo(){
-    if ( !this.currentAtractivo.id ) throw Error('Atractivo id es required')
-      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-        data:this.atractivoForm.value
-      });
-
-      dialogRef.afterClosed()
-       .pipe(
+    dialogRef.afterClosed()
+      .pipe(
         filter((result: boolean) => result),
-        switchMap( () => this.atractivosService.deleteAtractivoById( this.currentAtractivo.id)),
-        tap( wasDeleted => console.log({ wasDeleted})),
-       )
-       .subscribe(result =>{
-          this.router.navigate(['/administrador/listatra'])
-       })
+        switchMap(() => this.atractivosService.deleteAtractivoById(this.currentAtractivo.id)),
+        tap(wasDeleted => console.log({ wasDeleted })),
+      )
+      .subscribe(() => {
+        this.router.navigate(['/administrador/listatra']);
+        this.showSnackbar(`Atractivo Eliminado Correctamente`);
+      });
   }
 
-  goBack():void{
-    this.router.navigateByUrl('administrador/listatra')
+  goBack(): void {
+    this.router.navigateByUrl('administrador/listatra');
   }
-
 }
-
-
