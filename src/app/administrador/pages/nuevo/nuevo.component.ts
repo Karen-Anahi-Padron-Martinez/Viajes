@@ -13,8 +13,9 @@ import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-
   templateUrl: './nuevo.component.html',
   styles: ``
 })
-export class NuevoComponent implements OnInit{
-  //formulario reactivo
+export class NuevoComponent
+implements OnInit {
+  // formulario reactivo
   public hotelForm = new FormGroup({
     id: new FormControl<string>(''),
     nombre: new FormControl<string>(''),
@@ -31,79 +32,82 @@ export class NuevoComponent implements OnInit{
     segmento_mercado_potencial: new FormControl<string>(''),
     costo: new FormControl<string>(''),
     contacto: new FormControl<string>(''),
-    alt_img: new FormControl<string>(''),});
+    alt_img: new FormControl<string>(''),
+  });
+
   constructor(
     private hotelesService: HotelesService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
-  ){}
+  ) {}
 
-  get currentHotel():Hotel{
+  get currentHotel(): Hotel {
     const hotel = this.hotelForm.value as Hotel;
     return hotel;
   }
 
-  ngOnInit():void {
-
-    if (!this.router.url.includes('editar') ) return;
+  ngOnInit(): void {
+    if (!this.router.url.includes('editar')) return;
 
     this.activatedRoute.params
-    .pipe(
-      switchMap( ({ id }) => this.hotelesService.getHotelById( id) ),
-    ).subscribe(hotel =>{
-
-      if ( !hotel ) {
-        return this.router.navigateByUrl('/');
-      }
-      this.hotelForm.reset( hotel );
-      return;
-    });
-
+      .pipe(
+        switchMap(({ id }) => this.hotelesService.getHotelById(id)),
+      )
+      .subscribe(hotel => {
+        if (!hotel) {
+          return this.router.navigateByUrl('/');
+        }
+        this.hotelForm.reset(hotel);
+        return;
+      });
   }
-  onSubmit():void {
-    if ( this.hotelForm.invalid ) return;
-    if ( this.currentHotel.id) {
-      this.hotelesService.updateHotel( this.currentHotel )
-      .subscribe( hotel => {
-        this.showSnackbar(`${ hotel.nombre } updated`);
-      } );
+
+  onSubmit(): void {
+    if (this.hotelForm.invalid) return;
+    if (this.currentHotel.id) {
+      this.hotelesService.updateHotel(this.currentHotel)
+        .subscribe(() => {
+          this.showSnackbar(`Hotel Actualizado Correctamente`);
+        });
       return;
     }
-    this.hotelesService.addHotel( this.currentHotel )
-    .subscribe( hotel => {
-      // TODO: mostrar snackbar y navegar a administrador/editar/hotel.id
-      this.router.navigate(['/administrador/editar', hotel.id]);
-      this.showSnackbar(`${ hotel.nombre } created`);
+    this.hotelesService.addHotel(this.currentHotel)
+      .subscribe(hotel => {
+        this.router.navigate(['/administrador/listado']);
+        this.showSnackbar(`Hotel Guardado Correctamente`);
+      });
+  }
+
+  showSnackbar(message: string): void {
+    this.snackbar.open(message, 'Listo', {
+      duration: 2500,
+    });
+  }
+
+  onDeleteHotel() {
+    if (!this.currentHotel.id) throw Error('Hotel id es required');
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Eliminar Paquete',
+        message: `¿Está seguro de eliminar el paquete?`,
+      },
     });
 
-  }
-  showSnackbar(message: string ):void{
-    this.snackbar.open( message, 'done',{
-      duration: 2500,
-    })
-  }
-  onDeleteHotel(){
-    if ( !this.currentHotel.id ) throw Error('Hotel id es required')
-      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-        data:this.hotelForm.value
-      });
-
-      dialogRef.afterClosed()
-       .pipe(
+    dialogRef.afterClosed()
+      .pipe(
         filter((result: boolean) => result),
-        switchMap( () => this.hotelesService.deleteHotelById( this.currentHotel.id)),
-        tap( wasDeleted => console.log({ wasDeleted})),
-       )
-       .subscribe(result =>{
-          this.router.navigate(['administrador/listado'])
-       })
+        switchMap(() => this.hotelesService.deleteHotelById(this.currentHotel.id)),
+        tap(wasDeleted => console.log({ wasDeleted })),
+      )
+      .subscribe(() => {
+        this.router.navigate(['administrador/listado']);
+        this.showSnackbar(`Hotel Eliminado Correctamente`);
+      });
   }
 
-
-  goBack():void{
-    this.router.navigateByUrl('administrador/listado')
+  goBack(): void {
+    this.router.navigateByUrl('administrador/listado');
   }
-
 }

@@ -19,10 +19,19 @@ export class ListadoComponent implements OnInit {
   ){}
   ngOnInit(): void {
     this.hotelesService.getHoteles()
-    .subscribe(hoteles => this.hoteles = hoteles);
+    .subscribe(hoteles => {
+      this.hoteles = hoteles.filter(hotel=>
+        hotel.nombre.trim().toLowerCase() !== 'no especificado'
+      )
+    });
 
     this.restaurantesService.getRestaurantes()
-    .subscribe(restaurantes => this.restaurantes = restaurantes);
+    .subscribe(restaurantes =>
+      {
+        this.restaurantes = restaurantes.filter(restaurante=>
+          restaurante.nombre.trim().toLowerCase() !== 'no especificado'
+        )
+      });
   }
 
 }

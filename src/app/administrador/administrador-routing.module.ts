@@ -27,6 +27,9 @@ import { BuscaratraComponent } from './pages/buscaratra/buscaratra.component';
 import { InfoatraComponent } from './pages/infoatra/infoatra.component';
 import { ListatraComponent } from './pages/listatra/listatra.component';
 import { RegistroComponent } from './pages/registro/registro.component';
+import { MapapageComponent } from './pages/mapapage/mapapage.component';
+
+
 
 const routes: Routes = [
   {
@@ -34,7 +37,7 @@ const routes: Routes = [
     component: LayoutPageComponent,
     children:[
       { path: 'registro', component: RegistroComponent},
-
+      {path: 'mapita', component: MapapageComponent},
       { path: 'listado', component: ListadoComponent },
       { path: 'listatra', component: ListatraComponent },
       { path: 'listpaq', component: ListpaqComponent },
@@ -69,11 +72,12 @@ const routes: Routes = [
       { path: 'buscarexp', component: BuscarexpComponent },
       { path: 'editarexp/:id', component: NuevoexpComponent },
       { path: 'experiencias/:id', component: InfoexpComponent },
-
+      
       { path: 'nuevo', component: NuevoComponent },
       { path: 'buscar', component: BuscarComponent },
       { path: 'editar/:id', component: NuevoComponent },
       { path: 'hoteles/:id', component: InformacionComponent },
+      
 
       { path: '**', redirectTo: 'listado' },
     ]

@@ -13,9 +13,10 @@ import { InfohotelComponent } from './pages/infohotel/infohotel.component';
 import { InfopaqComponent } from './pages/infopaq/infopaq.component';
 import { InfoageComponent } from './pages/infoage/infoage.component';
 import { OlvidarpassComponent } from './pages/olvidarpass/olvidarpass.component';
-import { InfoitiComponent } from './pages/infoiti/infoiti.component';
 import { InforesComponent } from './pages/infores/infores.component';
 import { ListalugarComponent } from './pages/listalugar/listalugar.component';
+import { InfoitiComponent } from './pages/infoiti/infoiti.component';
+import { MapComponent } from './pages/map/map.component';
 
 const routes: Routes = [
   {
@@ -30,12 +31,13 @@ const routes: Routes = [
       { path: 'hoteles/:id', component: InfohotelComponent },
       { path: 'paquetes/:id', component: InfopaqComponent },
       { path: 'agencias/:id', component: InfoageComponent},
-      { path: 'itinerario/:id', component: InfoitiComponent },
+      { path: 'itinerarios/:id', component: InfoitiComponent},
       { path: 'paquetes', component: PaquetesComponent },
       { path: 'olvidarpass', component: OlvidarpassComponent},
       { path: 'formulario', component: FormularioComponent },
       { path: 'login', component: LoginComponent },
       { path: 'inicio', component: InicioComponent},
+      {path: 'mapa',component: MapComponent},
       { path: 'agencias', component: AgenciasComponent},
       { path: '**', redirectTo: 'inicio'}
     ]

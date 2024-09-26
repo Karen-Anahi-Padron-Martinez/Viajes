@@ -30,13 +30,14 @@ import { InfoageComponent } from './pages/infoage/infoage.component';
 import { AgenciaImagePipe } from './pipes/agencia-image.pipe';
 import { PersonalizadoAgenciaComponent } from './components/card/personalizado-agencia/personalizado.agencia';
 import { AtractivoImagePipe } from './pipes/atractivo-image.pipe';
-import { InfoitiComponent } from './pages/infoiti/infoiti.component';
 import { AtractivoComponent } from './components/card/atractivo/atractivo.component';
 import { ItinerarioComponent } from './components/card/itinerario/itinerario.component';
 import { ListalugarComponent } from './pages/listalugar/listalugar.component';
 import { ExperienciaImagePipe } from './pipes/experiencia-image.pipe';
 import { FormsModule } from '@angular/forms';
 import { PersonalizadoAtractivoComponent } from './components/card/personalizado-atractivo/personalizado-atractivo.component';
+import { InfoitiComponent } from './pages/infoiti/infoiti.component';
+import { MapComponent } from './pages/map/map.component';
 
 
 
@@ -71,11 +72,12 @@ import { PersonalizadoAtractivoComponent } from './components/card/personalizado
     InfoageComponent,
     AgenciaImagePipe,
     AtractivoImagePipe,
-    InfoitiComponent,
     AtractivoComponent,
     ItinerarioComponent,
     ListalugarComponent,
     PersonalizadoAtractivoComponent,
+    InfoitiComponent,
+    
 
   ],
   imports: [

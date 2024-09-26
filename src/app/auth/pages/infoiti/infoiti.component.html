@@ -1,1 +1,42 @@
-<p>infoiti works!</p>
+<ng-template #divLoading>
+  <mat-grid-list cols="1">
+    <mat-grid-tile>
+      <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-template>
+
+<div *ngIf="itinerario; else divLoading" class="grid p-2">
+
+    <mat-card class="col-12 sm:col-6">
+        <mat-card-header>
+          <mat-card-title>{{ itinerario.nombre }}</mat-card-title>
+          <!-- <mat-card-subtitle> {{paquete.contacto }}</mat-card-subtitle> -->
+        </mat-card-header>
+
+       <!-- <img [src]="itinerario | itinerarioImage" [alt]="itinerario.nombre" mat-card-image /> -->
+
+    </mat-card>
+    <mat-card class="col-12">
+          <mat-card-header>
+            <mat-card-title>Información</mat-card-title>
+            <mat-card-subtitle>{{itinerario.nombre}}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <mat-list>
+              <p><b>Día</b></p><div class="texto">{{itinerario.dia_1}}</div><br>
+              <p><b>Hora y Actividades</b></p><div class="texto">{{itinerario.actividades_dia_1}}</div><br>
+              <p><b>Día</b></p><div class="texto">{{itinerario.dia_2}}</div><br>
+              <p><b>Hora y Actividades</b></p><div class="texto">{{itinerario.actividades_dia_2}}</div><br>
+              <p><b>Día</b></p><div class="texto">{{itinerario.dia_3}}</div><br>
+              <p><b>Hora y Actividades</b></p><div class="texto">{{itinerario.actividades_dia_3}}</div><br>
+              <p><b>Día</b></p><div class="texto">{{itinerario.dia_4}}</div><br>
+              <p><b>Hora y Actividades</b></p><div class="texto">{{itinerario.actividades_dia_4}}</div><br>
+            </mat-list>
+
+            <button mat-flat-button color="primary" (click)="goBack()">Regresar</button>
+
+          </mat-card-content>
+    </mat-card>
+</div>

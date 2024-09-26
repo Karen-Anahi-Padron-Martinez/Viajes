@@ -51,7 +51,8 @@ export class RegistroComponent {
   ) { }
 
   onRegister() {
-    this.administradorServices.register(this.usuario, this.email, this.pass).subscribe(response => {
+    this.administradorServices.register(this.usuario, this.email, this.pass)
+    .subscribe(response => {
       if (response) {
         this.snackBar.open('Registrado', '', {
           duration: 2000,

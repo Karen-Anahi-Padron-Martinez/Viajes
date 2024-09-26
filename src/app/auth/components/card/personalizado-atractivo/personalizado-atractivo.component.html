@@ -1,6 +1,6 @@
 <div class="atractivo-card">
   <label>
-    <input type="checkbox" name="{{ atractivo.nombre }}" value="{{ atractivo.nombre }}" (change)="seleccionarAtractivo($event, atractivo)">
+    <input type="checkbox" [checked]="atractivo.selected" (change)="seleccionarAtractivo($event, atractivo)">
     {{ atractivo.nombre }}
   </label>
 </div>

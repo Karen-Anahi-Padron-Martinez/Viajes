@@ -2,7 +2,8 @@
 
 <h1>Formulario de Paquete Turístico Personalizado</h1>
 <div class="container">
-  <form (ngSubmit)="enviarFormulario()">
+  <form (ngSubmit)="enviarFormulario()" #formulario="ngForm">
+    <!-- Información de Contacto -->
     <p>Información de Contacto:</p>
     <div class="form-group">
       <label for="nombre">Nombre Completo:</label>
@@ -17,6 +18,7 @@
       <input type="tel" id="telefono" [(ngModel)]="telefono" name="telefono" required>
     </div>
 
+    <!-- Detalles del Paquete -->
     <p>Detalles del Paquete:</p>
     <div class="form-row">
       <div class="form-group">
@@ -51,6 +53,7 @@
       </div>
     </div>
 
+    <!-- Selección de Hoteles -->
     <p>Seleccione el hotel que desea incluir en su paquete:</p>
     <div class="grid bm-8">
       <div *ngFor="let hotel of hoteles" class="card-column">
@@ -60,6 +63,7 @@
     </div>
     <hr>
 
+    <!-- Selección de Restaurantes -->
     <p>Seleccione el/los restaurantes que desea incluir en su paquete:</p>
     <div class="grid bm-8">
       <div *ngFor="let restaurante of restaurantes" class="card-column">
@@ -69,6 +73,7 @@
     </div>
     <hr>
 
+    <!-- Selección de Atractivos -->
     <p>Seleccione el/los atractivos turísticos que desea incluir en su paquete:</p>
     <div class="grid bm-8">
       <div *ngFor="let atractivo of atractivos" class="card-column">
@@ -78,6 +83,7 @@
     </div>
     <hr>
 
+    <!-- Selección de Agencia -->
     <p>Seleccione la agencia de viajes que manejará su paquete:</p>
     <div class="grid bm-8">
       <div *ngFor="let agencia of agencias" class="card-column">
@@ -88,6 +94,7 @@
 
     <input type="submit" value="Enviar" class="submit-button">
   </form>
+  <div *ngIf="mensajeExito" class="mensaje-exito">
+    {{ mensajeExito }}
+  </div>
 </div>
-
-<h1>Contraseña de Aplicación: Gmail</h1>
