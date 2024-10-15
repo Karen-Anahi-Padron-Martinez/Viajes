@@ -38,6 +38,7 @@ import { FormsModule } from '@angular/forms';
 import { PersonalizadoAtractivoComponent } from './components/card/personalizado-atractivo/personalizado-atractivo.component';
 import { InfoitiComponent } from './pages/infoiti/infoiti.component';
 import { MapComponent } from './pages/map/map.component';
+import { HotelInfoComponent } from './pages/hotel-info/hotel-info.component';
 
 
 
@@ -77,6 +78,8 @@ import { MapComponent } from './pages/map/map.component';
     ListalugarComponent,
     PersonalizadoAtractivoComponent,
     InfoitiComponent,
+    HotelInfoComponent,
+    
     
 
   ],
@@ -84,7 +87,8 @@ import { MapComponent } from './pages/map/map.component';
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    
   ]
 })
 export class AuthModule { }

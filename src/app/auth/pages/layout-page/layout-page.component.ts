@@ -14,6 +14,7 @@ export class LayoutPageComponent {
     {label:'Paquete personalizado', icon:'folder_open', url:'./formulario'},
     {label:'Contacto Agencias', icon:'assistant', url:'./agencias'},
     {label:'Ubicacion',icon:'location_on',url:'./mapa'},
+    {label: 'Hoteles Info',icon:'flights_and_hotels',url:'./info'},
     {label:'Administrador', icon:'label_important', url:'./login'},
   ]
 }

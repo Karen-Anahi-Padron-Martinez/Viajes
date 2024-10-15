@@ -41,5 +41,22 @@ export class AdministradorServices {
           return of(null);
         })
       )
+
+  }
+
+  // Método para guardar la ubicación del usuario en la base de datos
+  saveLocation(idUsuario: number, latitud: number, longitud: number): Observable<any> {
+    const body = { idUsuario, latitud, longitud };
+    return this.http.post(`${this.baseUrl}/save-location`, body);
+  }
+
+  // Método para obtener la última ubicación del usuario
+  getLocation(idUsuario: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/get-location/${idUsuario}`);
+  }
+
+  // Método para obtener todas las ubicaciones de los usuarios
+  getAllLocations(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/get-all-locations`);
   }
 }

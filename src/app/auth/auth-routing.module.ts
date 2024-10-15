@@ -38,6 +38,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'inicio', component: InicioComponent},
       {path: 'mapa',component: MapComponent},
+      {path: 'info',component: InfoageComponent},
       { path: 'agencias', component: AgenciasComponent},
       { path: '**', redirectTo: 'inicio'}
     ]

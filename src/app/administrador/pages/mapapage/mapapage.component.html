@@ -4,13 +4,9 @@
 	<base target="_top">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
 	<title>Quick Start - Leaflet</title>
-	
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 	<style>
 		html, body {
@@ -24,16 +20,18 @@
 			max-height: 100%;
 		}
 	</style>
-
-	
 </head>
 <body>
 
-
+<!-- Dropdown para seleccionar usuarios -->
+<!--<select id="userSelect">
+	<option value="">Selecciona un usuario</option>
+</select> -->
 
 <div id="map" style="width: 1000px; height: 800px;"></div>
-<script>
 
+<script>
+	// Crear el mapa
 	const map = L.map('map').setView([51.505, -0.09], 13);
 
 	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -41,40 +39,47 @@
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 
-	const marker = L.marker([51.5, -0.09]).addTo(map)
-		.bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+	let marker;
 
-	const circle = L.circle([51.508, -0.11], {
-		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.5,
-		radius: 500
-	}).addTo(map).bindPopup('I am a circle.');
+	// Obtener usuarios al cargar la página
+	window.onload = function() {
+		fetch('http://localhost:3000/users') // Reemplaza con la URL correcta de tu API
+			.then(response => response.json())
+			.then(data => {
+				const userSelect = document.getElementById('userSelect');
+				data.forEach(user => {
+					const option = document.createElement('option');
+					option.value = user.idUsuario;
+					option.textContent = user.nombre;
+					userSelect.appendChild(option);
+				});
+			})
+			.catch(error => console.error('Error al cargar usuarios:', error));
+	};
 
-	const polygon = L.polygon([
-		[51.509, -0.08],
-		[51.503, -0.06],
-		[51.51, -0.047]
-	]).addTo(map).bindPopup('I am a polygon.');
+	// Mostrar la ubicación de un usuario seleccionado
+	document.getElementById('userSelect').addEventListener('change', function() {
+		const userId = this.value;
+		if (userId) {
+			fetch(`http://localhost:3000/get-location/${userId}`) // Reemplaza con la URL correcta de tu API
+				.then(response => response.json())
+				.then(location => {
+					if (marker) {
+						map.removeLayer(marker); // Elimina el marcador anterior si existe
+					}
 
+					// Coloca un nuevo marcador en la ubicación del usuario seleccionado
+					const { latitud, longitud } = location;
+					marker = L.marker([latitud, longitud]).addTo(map)
+						.bindPopup(`Ubicación de ${this.options[this.selectedIndex].textContent}`).openPopup();
 
-	const popup = L.popup()
-		.setLatLng([51.513, -0.09])
-		.setContent('I am a standalone popup.')
-		.openOn(map);
-
-	function onMapClick(e) {
-		popup
-			.setLatLng(e.latlng)
-			.setContent(`You clicked the map at ${e.latlng.toString()}`)
-			.openOn(map);
-	}
-
-	map.on('click', onMapClick);
-
+					// Centra el mapa en la nueva ubicación
+					map.setView([latitud, longitud], 13);
+				})
+				.catch(error => console.error('Error al obtener ubicación:', error));
+		}
+	});
 </script>
-
-
 
 </body>
 </html>

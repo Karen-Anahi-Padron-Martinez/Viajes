@@ -18,7 +18,7 @@ export class AuthServices {
     this.router.navigateByUrl('/auth/login');
   }
 
-  login(usuario: string, pass: string): Observable<{ autenticado: boolean, token: string | null } | null> {
+  login(usuario: string, pass: string): Observable<{ autenticado: boolean; token: string | null; userId: number } | null> {
     const url = `${this.baseUrl}/login`;
     const body = { usuario, pass };
     const httpOptions = {
@@ -27,11 +27,12 @@ export class AuthServices {
       })
     };
 
-    return this.http.post<{ autenticado: boolean, token: string | null }>(url, body, httpOptions)
+    return this.http.post<{ autenticado: boolean; token: string | null; userId: number }>(url, body, httpOptions)
       .pipe(
         map(response => {
           if (response.autenticado && response.token) {
             localStorage.setItem('token', response.token);
+            localStorage.setItem('userId', response.userId.toString()); // Guarda userId en localStorage
           }
           return response;
         }),
@@ -41,6 +42,11 @@ export class AuthServices {
         })
       );
   }
+ 
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
