@@ -1,0 +1,12 @@
+<button (click)="signInWithFacebook()">Iniciar sesión con Facebook</button>
+
+<div *ngIf="user">
+  <h3>Bienvenido, {{ user.name }}</h3>
+  <img [src]="user.picture.data.url" alt="Profile Picture">
+</div>
+
+
+
+
+
+  

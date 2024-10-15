@@ -94,6 +94,7 @@ import { MapapageComponent } from './pages/mapapage/mapapage.component';
     ItinerarioComponent,
     RegistroComponent,
     
+    
 
   ],
   imports: [

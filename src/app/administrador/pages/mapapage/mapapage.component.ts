@@ -1,35 +1,38 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import * as L from 'leaflet';
+import { HttpClient } from '@angular/common/http';
 
-interface User {
-  id: number;
-  name: string;
-  lat: number;
-  lng: number;
+interface Location {
+  id: number;         // Tipo INT, clave primaria
+  idUsuario: number;  // Tipo INT
+  latitud: number;    // Tipo DECIMAL
+  longitud: number;   // Tipo DECIMAL
+  fecha: string;      // Tipo TIMESTAMP, puedes usar string para simplificar
 }
-
 @Component({
   selector: 'app-mapapage',
   templateUrl: './mapapage.component.html',
-  styleUrls: ['./mapapage.component.css'] // Corregido el nombre aquí
+  styleUrls: ['./mapapage.component.css']
 })
 export class MapapageComponent implements OnInit {
   map!: L.Map;
-  users: User[] = [
-    { id: 12, name: 'uriel', lat: 21.126598, lng: -100.855372 },
-    { id: 13, name: 'lizeth', lat: 21.151915, lng: -100.930291 },
-    { id: 4, name: 'erika', lat: 21.125325, lng: -100.856640 }
-  ];
-  userLocation!: L.Marker; // Para guardar tu ubicación como marcador
+  userId!: number;
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    // Obtener el userId del localStorage
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      this.userId = parseInt(storedUserId, 10);
+    }
+
     this.initMap();
-    this.getUserLocation(); // Llamar a la función para obtener la ubicación del usuario
+    this.loginAndUpdateLocation();
   }
 
   initMap(): void {
-    // Configuración inicial del mapa
-    this.map = L.map('map').setView([51.505, -0.09], 13); // Ubicación inicial por defecto
+    this.map = L.map('map').setView([51.505, -0.09], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -37,42 +40,113 @@ export class MapapageComponent implements OnInit {
     }).addTo(this.map);
   }
 
+  loginAndUpdateLocation(): void {
+    // Simulación de inicio de sesión
+    // Reemplaza esto por la lógica real de autenticación
+    const password = '1234'; // Cambia esto por la contraseña real
+
+    this.http.post('http://localhost:3000/login', { userId: 4, password }).subscribe(
+      (response: any) => {
+        console.log(response.message);
+        // Llama a la función para obtener y guardar la ubicación
+        this.getUserLocation();
+      },
+      (error) => {
+        console.error('Error al iniciar sesión', error);
+      }
+    );
+  }
+
   getUserLocation(): void {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLat = position.coords.latitude;
+          const userLng = position.coords.longitude;
 
-        // Centrar el mapa en la ubicación del usuario
-        this.map.setView([lat, lng], 13);
+          // Muestra la ubicación del usuario en el mapa
+          this.map.setView([userLat, userLng], 13);
 
-        // Añadir un marcador para la ubicación del usuario
-        this.userLocation = L.marker([lat, lng])
-          .addTo(this.map)
-          .bindPopup('Tu ubicación')
-          .openPopup();
+          // Agrega un marcador en la ubicación del usuario
+          L.marker([userLat, userLng])
+            .addTo(this.map)
+            .bindPopup('Estás aquí!')
+            .openPopup();
 
-        // Después de centrar el mapa en el usuario, mostrar las ubicaciones de los demás usuarios
-        this.showUserLocations();
-      }, () => {
-        console.error('No se pudo obtener la ubicación');
-      });
+          // Guarda la ubicación en el backend
+          this.saveUserLocation(userLat, userLng);
+        },
+        (error) => {
+          console.error('Error al obtener la ubicación: ', error);
+        }
+      );
     } else {
-      console.error('Geolocalización no soportada por el navegador');
+      console.error('La geolocalización no es compatible con este navegador.');
     }
   }
 
-  showUserLocations(): void {
-    this.users.forEach(user => {
-      L.marker([user.lat, user.lng])
-        .addTo(this.map)
-        .bindPopup(`${user.name} (ID: ${user.id})`);
-    });
+  saveUserLocation(lat: number, lng: number): void {
+    const userId = localStorage.getItem('userId'); // Obtener el userId del localStorage
+  
+    if (!userId) {
+      console.error('No se encontró el userId en el localStorage');
+      return; // Si no se encuentra el userId, no continuar
+    }
+  
+    console.log('Enviando datos:', { userId: userId, lat: lat, lng: lng });
+    this.http.post('http://localhost:3000/save-location', {
+      userId: userId,
+      lat: lat,
+      lng: lng
+    }).subscribe(
+      (response) => {
+        console.log('Ubicación guardada', response);
+        // Cargar la última ubicación guardada
+        this.loadAllUserLocations();
+      },
+      (error) => {
+        console.error('Error al guardar la ubicación', error);
+      }
+    );
   }
+  
 
-  // Ajustar el tamaño del mapa al redimensionar la ventana
-  @HostListener('window:resize')
-  onResize() {
-    this.map.invalidateSize();
-  }
+ /* loadUserLocation(): void {
+    this.http.get(`http://localhost:3000/get-location/${this.userId}`).subscribe(
+      (location: any) => {
+        console.log('Ubicación recibida:', location);
+        if (location && location.lat && location.lng) {
+          // Si hay una ubicación guardada, mostrarla en el mapa
+          this.map.setView([location.lat, location.lng], 13);
+          L.marker([location.lat, location.lng])
+            .addTo(this.map)
+            .bindPopup('Última ubicación guardada')
+            .openPopup();
+        }
+      },
+      (error) => {
+        console.error('Error al cargar la ubicación', error);
+      }
+    );
+  }*/
+    loadAllUserLocations(): void {
+      this.http.get<Location[]>('http://localhost:3000/get-all-locations').subscribe(
+        (locations: Location[]) => {
+          console.log('Ubicaciones recibidas:', locations);
+          locations.forEach((location) => {
+            if (location && location.latitud && location.longitud) {
+              // Mostrar cada ubicación en el mapa
+              L.marker([location.latitud, location.longitud])
+                .addTo(this.map)
+                .bindPopup(`Usuario: ${location.idUsuario} - Última ubicación guardada`)
+                .openPopup();
+            }
+          });
+        },
+        (error) => {
+          console.error('Error al cargar las ubicaciones', error);
+        }
+      );
+    }
+    
 }
