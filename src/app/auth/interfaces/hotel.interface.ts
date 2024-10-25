@@ -14,6 +14,7 @@ export interface Hotel {
   segmento_mercado_potencial: string;
   costo: string;
   contacto: string;
+  coordenadas: string;
   alt_img?: string;
   selected: boolean; // Vamos a ver si funciona
 }
