@@ -1,0 +1,95 @@
+/* Contenedor principal para dividir en dos columnas */
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  max-width: 1200px;
+  gap: 30px; /* Espacio entre las columnas */
+}
+
+/* Columna de búsqueda */
+.search-container {
+  position: relative;
+  width: 40%; /* Toma el 40% del ancho de la pantalla */
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px 40px 10px 15px; /* Espacio para el ícono */
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-container input:focus {
+  border-color: #007bff;
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #888;
+}
+
+/* Lista de países */
+.country-list {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.country-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-bottom: 1px solid #eee;
+}
+
+.country-item:last-child {
+  border-bottom: none;
+}
+
+.country-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Columna de detalles del país seleccionado */
+.country-details {
+  width: 55%; /* Toma el 55% del ancho de la pantalla */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fafafa;
+  text-align: center;
+}
+
+.country-details h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #007bff;
+}
+
+.flag-container {
+  margin-bottom: 20px;
+}
+
+.country-flag {
+  width: 150px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.country-details p {
+  font-size: 16px;
+  margin: 10px 0;
+}
