@@ -39,6 +39,11 @@ import { PersonalizadoAtractivoComponent } from './components/card/personalizado
 import { InfoitiComponent } from './pages/infoiti/infoiti.component';
 import { MapComponent } from './pages/map/map.component';
 import { HotelInfoComponent } from './pages/hotel-info/hotel-info.component';
+import { CountryComponent } from './pages/country/country.component';
+import { AirportsComponent } from './pages/airport/airports.component';
+import { VideoListComponent } from './pages/video/video-list.component';
+import { SafePipe } from './pipes/safe.pipe';
+import { LiveStreamsComponent } from './pages/twich/live-streams.component';
 
 
 
@@ -79,6 +84,12 @@ import { HotelInfoComponent } from './pages/hotel-info/hotel-info.component';
     PersonalizadoAtractivoComponent,
     InfoitiComponent,
     HotelInfoComponent,
+    CountryComponent,
+    AirportsComponent,
+    VideoListComponent,
+    SafePipe,
+    LiveStreamsComponent,
+
     
     
 
