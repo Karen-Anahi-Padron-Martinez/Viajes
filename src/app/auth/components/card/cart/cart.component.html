@@ -1,0 +1,47 @@
+<!-- <ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+  <h3>Realizando...</h3>
+</ngx-spinner> -->
+
+
+<div *ngIf="cartItems.length < 1">
+  <div class="alert alert-info text-center">
+    <h4>Your Cart is Empty</h4>
+  </div>
+</div>
+<div>
+
+<div *ngIf="cartItems.length > 0">
+  <div class="alert alert-info text-center">
+    <h4>Your Cart</h4>
+  </div>
+  <h4>Your cart</h4>
+</div>
+<div class="text-center">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of cartItems">
+      <div class="col-md-10">
+        <app-cart-item [cartItem]="item"></app-cart-item> <!-- Asegúrate de pasar 'item' -->
+      </div>
+      <div *ngFor="let item of cartItems; let i = index" class="cart-item">
+        <!-- other content -->
+        <div class="col-md-2">
+          <i class="far fa-trash-alt fa-2x" (click)="deleteItem(i)"></i>
+        </div>
+      </div>
+
+    </li>
+  </ul>
+</div>
+
+<div class="alert alert-warning text-center">
+  <strong>Total: </strong>{{total}}
+</div>
+<button class="btn btn-outline-danger btn-block mb-2" (click)="emptyCart()">
+  <i class="fas fa-ban"></i>Empty Cart
+</button>
+<ngx-paypal [config]="payPalConfig"></ngx-paypal>
+</div>

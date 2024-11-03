@@ -37,8 +37,10 @@ import { ExperienciaImagePipe } from './pipes/experiencia-image.pipe';
 import { FormsModule } from '@angular/forms';
 import { PersonalizadoAtractivoComponent } from './components/card/personalizado-atractivo/personalizado-atractivo.component';
 import { InfoitiComponent } from './pages/infoiti/infoiti.component';
-import { MapComponent } from './pages/map/map.component';
-import { HotelInfoComponent } from './pages/hotel-info/hotel-info.component';
+import { CartItemComponent } from './components/card/cart-item/cart-item.component';
+import { NgxPayPalModule } from 'ngx-paypal'; // Importa NgxPaypalModule aquí
+import { CartComponent } from './components/card/cart/cart.component';
+import { ModalComponent } from './components/card/modal/modal.component';
 
 
 
@@ -78,9 +80,9 @@ import { HotelInfoComponent } from './pages/hotel-info/hotel-info.component';
     ListalugarComponent,
     PersonalizadoAtractivoComponent,
     InfoitiComponent,
-    HotelInfoComponent,
-    
-    
+    CartComponent,
+    CartItemComponent,
+    ModalComponent,
 
   ],
   imports: [
@@ -88,7 +90,9 @@ import { HotelInfoComponent } from './pages/hotel-info/hotel-info.component';
     AuthRoutingModule,
     MaterialModule,
     FormsModule,
-    
+    NgxPayPalModule,
+
+
   ]
 })
 export class AuthModule { }
