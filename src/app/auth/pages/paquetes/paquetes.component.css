@@ -2,11 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; /* Distribuye el espacio entre las tarjetas */
-  margin: 0 30px; /* Margen de 30px a los lados */
+  margin: 0 100px; /* Margen de 30px a los lados */
 }
 
 h1{
-  margin-left: 25px;
+  margin-left: 100px;
 }
 .grid .col-12 {
   flex: 1 1 calc(33.333% - 20px); /* Calcula el ancho de cada tarjeta considerando el margen */
