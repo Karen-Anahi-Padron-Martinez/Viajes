@@ -1,0 +1,16 @@
+.stream {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #6441a4;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  

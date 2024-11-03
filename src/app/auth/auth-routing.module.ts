@@ -17,6 +17,10 @@ import { InforesComponent } from './pages/infores/infores.component';
 import { ListalugarComponent } from './pages/listalugar/listalugar.component';
 import { InfoitiComponent } from './pages/infoiti/infoiti.component';
 import { MapComponent } from './pages/map/map.component';
+import { CountryComponent } from './pages/country/country.component';
+import { AirportsComponent } from './pages/airport/airports.component';
+import { VideoListComponent } from './pages/video/video-list.component';
+import { LiveStreamsComponent } from './pages/twich/live-streams.component';
 
 const routes: Routes = [
   {
@@ -38,7 +42,11 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'inicio', component: InicioComponent},
       {path: 'mapa',component: MapComponent},
+      {path: 'pais',component: CountryComponent},
+      {path: 'air',component: AirportsComponent},
       {path: 'info',component: InfoageComponent},
+      {path: 'streaming',component:VideoListComponent},
+      {path: 'twitch', component:LiveStreamsComponent},
       { path: 'agencias', component: AgenciasComponent},
       { path: '**', redirectTo: 'inicio'}
     ]

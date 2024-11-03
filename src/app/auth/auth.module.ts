@@ -37,10 +37,20 @@ import { ExperienciaImagePipe } from './pipes/experiencia-image.pipe';
 import { FormsModule } from '@angular/forms';
 import { PersonalizadoAtractivoComponent } from './components/card/personalizado-atractivo/personalizado-atractivo.component';
 import { InfoitiComponent } from './pages/infoiti/infoiti.component';
+
 import { CartItemComponent } from './components/card/cart-item/cart-item.component';
-import { NgxPayPalModule } from 'ngx-paypal'; // Importa NgxPaypalModule aquí
+import { NgxPayPalModule } from 'ngx-paypal'; 
 import { CartComponent } from './components/card/cart/cart.component';
 import { ModalComponent } from './components/card/modal/modal.component';
+
+import { MapComponent } from './pages/map/map.component';
+import { HotelInfoComponent } from './pages/hotel-info/hotel-info.component';
+import { CountryComponent } from './pages/country/country.component';
+import { AirportsComponent } from './pages/airport/airports.component';
+import { VideoListComponent } from './pages/video/video-list.component';
+import { SafePipe } from './pipes/safe.pipe';
+import { LiveStreamsComponent } from './pages/twich/live-streams.component';
+
 
 
 
@@ -80,9 +90,21 @@ import { ModalComponent } from './components/card/modal/modal.component';
     ListalugarComponent,
     PersonalizadoAtractivoComponent,
     InfoitiComponent,
+
     CartComponent,
     CartItemComponent,
     ModalComponent,
+
+    HotelInfoComponent,
+    CountryComponent,
+    AirportsComponent,
+    VideoListComponent,
+    SafePipe,
+    LiveStreamsComponent,
+
+    
+    
+
 
   ],
   imports: [

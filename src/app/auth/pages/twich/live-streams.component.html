@@ -1,0 +1,47 @@
+<div *ngFor="let stream of liveStreams">
+  <h3>{{ stream.user_name }}</h3>
+  <p>Viewers: {{ stream.viewer_count }}</p>
+  
+  <!-- Iframe con URL sanitizada -->
+  <iframe
+    width="720"
+    height="480"
+    [src]="getSafeUrl(stream.user_login)"
+    frameborder="0"
+    allowfullscreen="true">
+  </iframe>
+  
+  <hr>
+</div>
+
+<!--<div *ngFor="let stream of liveStreams">
+  <h3>{{ stream.user_name }}</h3>
+  <p>Viewers: {{ stream.viewer_count }}</p>
+  
+  <!-- Aquí está el iframe que incrusta el stream de Twitch 
+  <iframe
+    width="720"
+    height="480"
+    [src]="'https://player.twitch.tv/?channel=' + stream.user_login + '&parent=localhost'"
+    frameborder="0"
+    allowfullscreen="true">
+  </iframe>
+  
+  <hr>
+</div>-->
+
+<!--<div *ngIf="liveStreams.length > 0">
+  <h2>Live Tourism Streams</h2>
+  <div *ngFor="let stream of liveStreams" class="stream">
+    <h3>{{ stream.user_name }}</h3>
+    <p>{{ stream.title }}</p>
+    <p>Viewers: {{ stream.viewer_count }}</p>
+    <a [href]="'https://www.twitch.tv/' + stream.user_name" target="_blank">
+      Watch Stream
+    </a>
+  </div>
+</div>
+<div *ngIf="liveStreams.length === 0">
+  <p>No live streams found</p>
+</div>
+<app-live-streams></app-live-streams>-->

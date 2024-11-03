@@ -1,0 +1,15 @@
+<div *ngFor="let video of videos">
+    <h3>{{ video.name }}</h3>
+    <iframe
+      [src]="video.embed.embed_url | safe"
+      width="640"
+      height="360"
+      frameborder="0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+    <p>{{ video.description }}</p>
+  </div>
+  
+ 
+  

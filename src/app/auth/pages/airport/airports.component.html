@@ -1,0 +1,19 @@
+<div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Escribe el nombre del país"
+    />
+    <button (click)="searchAirports()">Buscar Aeropuertos</button>
+  </div>
+  
+  <!-- Mostrar los aeropuertos -->
+  <div *ngFor="let airport of airports" class="airport">
+    <h2>{{ airport.airport_name }}</h2>
+    <p>{{ airport.country_name }}</p>
+    <p>Código IATA: {{ airport.iata_code }}</p>
+    <p>Código ICAO: {{ airport.icao_code }}</p>
+    <img [src]="'https://source.unsplash.com/600x400/?airport,' + airport.iata_code" alt="Airport Image">
+  </div>
+  
+  
