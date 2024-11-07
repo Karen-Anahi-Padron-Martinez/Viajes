@@ -1,21 +1,33 @@
-<br>
+<!-- Paquetes Section -->
 <h1>Paquetes</h1>
 <mat-divider></mat-divider>
 <br>
-<div class="grid bm-8">
-  <div *ngFor="let paquete of paquetes"
-  class="col-12 sm:col-4 md:col-3 xl:col-2">
-    <paquetes-paquete-card [paquete]="paquete"></paquetes-paquete-card>
-<!-- Llama al card.component.ts -->
+<div class="grid bm-8"> <!-- Asegúrate de que la clase sea .grid -->
+  <div class="row first-row"> <!-- Primera fila: dos cartas y carrito -->
+    <div class="col-md-8"> <!-- Toma 8 columnas de ancho -->
+      <div class="row">
+        <div *ngFor="let paquete of paquetes | slice:0:2" class="col-md-6">
+          <paquetes-paquete-card [paquete]="paquete"></paquetes-paquete-card>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4"> <!-- Toma 4 columnas de ancho para el carrito -->
+      <app-cart></app-cart>
+    </div>
+  </div>
+
+  <!-- Resto de las cartas en filas de tres -->
+  <div class="row grid"> <!-- Asegúrate de que la clase sea .grid -->
+    <div *ngFor="let paquete of paquetes | slice:2" class="col-12 col-md-4 col-lg-3">
+      <paquetes-paquete-card [paquete]="paquete"></paquetes-paquete-card>
+    </div>
   </div>
 </div>
 
 <h1>Itinerarios</h1>
 <mat-divider></mat-divider>
 <div class="grid bm-8">
-  <div *ngFor="let itinerario of itinerarios"
-  class="col-12 sm:col-4 md:col-3 xl:col-2">
+  <div *ngFor="let itinerario of itinerarios" class="col-12 sm:col-4 md:col-3 xl:col-2">
     <itinerarios-itinerario-card [itinerario]="itinerario"></itinerarios-itinerario-card>
-<!-- Llama al card.component.ts -->
   </div>
 </div>
