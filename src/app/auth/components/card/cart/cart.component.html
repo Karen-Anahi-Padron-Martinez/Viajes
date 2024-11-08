@@ -16,23 +16,19 @@
 
 <div *ngIf="cartItems.length > 0">
   <div class="alert alert-info text-center">
-    <h4>Your Cart</h4>
+    <h4>Tu carrito</h4>
   </div>
-  <h4>Your cart</h4>
+  <h4>Tu carrito</h4>
 </div>
 <div class="text-center">
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let item of cartItems">
+    <li class="list-group-item" *ngFor="let item of cartItems; let i = index">
       <div class="col-md-10">
-        <app-cart-item [cartItem]="item"></app-cart-item> <!-- Asegúrate de pasar 'item' -->
+        <app-cart-item [cartItem]="item"></app-cart-item>
       </div>
-      <div *ngFor="let item of cartItems; let i = index" class="cart-item">
-        <!-- other content -->
-        <div class="col-md-2">
-          <i class="far fa-trash-alt fa-2x" (click)="deleteItem(i)"></i>
-        </div>
+      <div class="col-md-2">
+        <i class="far fa-trash-alt fa-2x" (click)="deleteItem(i)"></i>
       </div>
-
     </li>
   </ul>
 </div>

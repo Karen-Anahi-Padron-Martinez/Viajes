@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthServices } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FacebookService } from '../../services/facebook.service';
-
+import { UserService } from '../../services/user.service';
 interface LoginResponse {
   autenticado: boolean;
   token: string | null;
@@ -21,6 +21,7 @@ export class LoginComponent {
 
   constructor(
     private authServices: AuthServices,
+    private userService: UserService,
     private router: Router,
     private facebookService: FacebookService
   ) {}
@@ -52,6 +53,7 @@ signInWithFacebook() {
     .then((userData) => {
       this.user = userData;
       console.log('User data:', this.user);
+      this.userService.setUserData(this.user);
       alert('User email: ' + this.user.email); // Muestra el email del usuario
       // Redirigir al usuario a la ruta /administrador/listado
       this.router.navigate(['/administrador/listado']);

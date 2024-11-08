@@ -1,3 +1,18 @@
+<div *ngIf="streamStatus">
+  <p>{{ streamStatus }}</p>
+</div>
+
+<!-- Mostrar el iframe solo si el usuario está en vivo -->
+<div *ngIf="streamUrl">
+  <iframe 
+    [src]="streamUrl" 
+    width="900" 
+    height="600" 
+    frameborder="0" 
+    allowfullscreen="true">
+  </iframe>
+</div>
+
 <div *ngFor="let stream of liveStreams">
   <h3>{{ stream.user_name }}</h3>
   <p>Viewers: {{ stream.viewer_count }}</p>
@@ -18,7 +33,7 @@
   <h3>{{ stream.user_name }}</h3>
   <p>Viewers: {{ stream.viewer_count }}</p>
   
-  <!-- Aquí está el iframe que incrusta el stream de Twitch 
+   Aquí está el iframe que incrusta el stream de Twitch 
   <iframe
     width="720"
     height="480"

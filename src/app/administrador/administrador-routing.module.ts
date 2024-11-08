@@ -28,6 +28,7 @@ import { InfoatraComponent } from './pages/infoatra/infoatra.component';
 import { ListatraComponent } from './pages/listatra/listatra.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { MapapageComponent } from './pages/mapapage/mapapage.component';
+import { ProfileComponent } from './pages/perfil/profile.component';
 
 
 
@@ -37,6 +38,7 @@ const routes: Routes = [
     component: LayoutPageComponent,
     children:[
       { path: 'registro', component: RegistroComponent},
+      { path: 'perfil',component: ProfileComponent},
       {path: 'mapita', component: MapapageComponent},
       { path: 'listado', component: ListadoComponent },
       { path: 'listatra', component: ListatraComponent },
@@ -77,6 +79,7 @@ const routes: Routes = [
       { path: 'buscar', component: BuscarComponent },
       { path: 'editar/:id', component: NuevoComponent },
       { path: 'hoteles/:id', component: InformacionComponent },
+      
       
 
       { path: '**', redirectTo: 'listado' },

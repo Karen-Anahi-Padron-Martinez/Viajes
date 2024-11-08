@@ -27,4 +27,13 @@ export class TwitchService {
 
     return this.http.get(this.apiUrl, { headers, params });
   }
+  // Obtener la información del canal de un usuario
+  getStreamStatus(username: string): Observable<any> {
+    const url = `https://api.twitch.tv/helix/streams?user_login=${username}`;
+    const headers = new HttpHeaders()
+      .set('Client-ID', this.clientId)
+      .set('Authorization', `Bearer ${this.token}`);
+
+    return this.http.get(url, { headers });
+  }
 }
