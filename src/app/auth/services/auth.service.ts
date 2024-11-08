@@ -52,4 +52,11 @@ export class AuthServices {
     const token = localStorage.getItem('token');
     return !!token; // Verifica si el token existe y es válido (podrías agregar más lógica aquí)
   }
+  saveFacebookUserData(userData: any) {
+    return this.http.post(`${this.baseUrl}/facebook-login`, userData);
+  }
+  getUserData(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/profile`); // Asegúrate de tener un endpoint que devuelva los datos del perfil
+  }
+  
 }

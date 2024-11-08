@@ -20,6 +20,7 @@ export class LayoutPageComponent {
   }
 
   public sidebarItem=[
+    {label:'Perfil',icon:'person',url:'./perfil'},
     {label:'Agencias', icon:'label', url:'./listage'},
     {label:'Lugares', icon:'label', url:'./listado'},
     {label:'Atractivos', icon:'label', url:'./listatra'},

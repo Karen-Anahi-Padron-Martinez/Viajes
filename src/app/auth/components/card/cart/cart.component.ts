@@ -7,6 +7,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { CartItemModel } from '../../../model/cart-item-models';
+import { StoragesService } from '../../../services/storage.service';
+
 
 @Component({
   selector: 'app-cart',
@@ -20,14 +22,20 @@ export class CartComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private modalService: NgbModal,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private storageService: StoragesService,
+
 
   ) { }
 
   ngOnInit(): void {
+    if(this.storageService.existsCart()) {
+      this.cartItems = this.storageService.getCart();
+    }
     this.initConfig();
     this.getItem();
     this.total = this.getTotal();
+    this.storageService.setCart(this.cartItems);
   }
   private initConfig(): void {
 
@@ -115,6 +123,7 @@ export class CartComponent implements OnInit {
         this.cartItems.push(cartItem);
       }
       this.total = this.getTotal();
+      this.storageService.setCart(this.cartItems);
     });
   }
   getItemsList(): any[]{
@@ -142,6 +151,7 @@ export class CartComponent implements OnInit {
   emptyCart(): void {
     this.cartItems = [];
     this.total = 0;
+    this.storageService.clear();
   }
 
   deleteItem(i: number): void {
@@ -151,8 +161,10 @@ export class CartComponent implements OnInit {
       this.cartItems.splice(i, 1);
     }
     this.total = this.getTotal();
-
+    this.storageService.setCart(this.cartItems); 
   }
+
+
   openModal(items: any, amount: string): void {
     const modalRef = this.modalService.open(ModalComponent);
     modalRef.componentInstance.items = items;

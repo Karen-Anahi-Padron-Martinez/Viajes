@@ -10,8 +10,8 @@ export class AdministradorServices {
 
 
   // Base URL backend
-  private baseUrl: string = 'https://backend-production-70c9.up.railway.app';
-
+  //private baseUrl: string = 'https://backend-production-70c9.up.railway.app';
+  private baseUrl = 'http://localhost:3000'; // URL de tu servidor backend
   constructor ( private http: HttpClient ) { }
 
   // * Metodo para hacer el Login
@@ -58,5 +58,14 @@ export class AdministradorServices {
   // Método para obtener todas las ubicaciones de los usuarios
   getAllLocations(): Observable<any> {
     return this.http.get(`${this.baseUrl}/get-all-locations`);
+  }
+  // AuthService en Angular
+getUserProfilee(userId: number) {
+  return this.http.get(`${this.baseUrl}/user/${userId}`);
+}
+
+  // Método para obtener el perfil de usuario por ID
+  getUserProfile(userId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/profile/${userId}`);
   }
 }
