@@ -29,6 +29,7 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "json-server": "^1.0.0-beta.1",
+    "jspdf": "^2.5.2",
     "leaflet": "^1.9.4",
     "leaflet-routing-machine": "^3.2.12",
     "mysql2": "^3.11.0",

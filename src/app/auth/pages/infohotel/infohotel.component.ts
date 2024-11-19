@@ -1,11 +1,10 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { HotelesService } from '../../services/hotel.service';
-import { Hotel } from '../../interfaces/hotel.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import * as L from 'leaflet';
-import 'leaflet-routing-machine'; // Ensure this import is correct and installed
-
+import 'leaflet-routing-machine';
+import { Hotel } from '../../interfaces/hotel.interface';
+import { HotelesService } from '../../services/hotel.service';
 @Component({
   selector: 'app-infohotel',
   templateUrl: './infohotel.component.html',
@@ -30,34 +29,28 @@ export class InfohotelComponent implements OnInit, AfterViewInit {
     )
     .subscribe(hotel => {
       if (!hotel) {
-        this.router.navigate(['/auth/atractivos']); // Corrected: No return needed
+        this.router.navigate(['/auth/atractivos']);
         return; // Exit early if hotel is not found
       }
-
       this.hotel = hotel; // Set the hotel data
       console.log(hotel); // Log the hotel for debugging purposes
     });
   }
-
   ngAfterViewInit(): void {
     // Ensure the map is properly initialized
     this.map = L.map('map', {
       boxZoom: false
     }).setView([21.153870815136134, -100.93065831029644], 13);
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
-
     const defaultIcon = L.icon({
-      iconUrl: '/assets/icons/marker-icon-2x.png',
-      shadowUrl: '/assets/icons/marker-shadow.png',
+      iconUrl: 'assets/icons/here.png',
+      shadowUrl: 'assets/icons/here1.png',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
     });
-
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const userLocation: L.LatLngTuple = [position.coords.latitude, position.coords.longitude];
@@ -68,18 +61,14 @@ export class InfohotelComponent implements OnInit, AfterViewInit {
         if (this.hotel?.coordenadas) {
           const [lat, lng] = this.hotel.coordenadas.split(',').map(coord => parseFloat(coord.trim()));
           const destinationLocation: L.LatLngTuple = [lat, lng];
-
           this.updateDestinationMarker(destinationLocation);
-
-          // Use "any" to bypass TypeScript's type checking for Routing
           const Routing: any = (L as any).Routing;
-
           this.routingControl = Routing.control({
             waypoints: [
               L.latLng(userLocation),
               L.latLng(destinationLocation)
             ],
-            createMarker: () => null // Disable default waypoint markers
+            createMarker: () => null
           }).addTo(this.map!);
 
           this.map!.fitBounds(this.routingControl.getWaypoints().map((waypoint: any) => waypoint.latLng));

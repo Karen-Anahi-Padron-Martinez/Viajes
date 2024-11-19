@@ -10,6 +10,7 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { FormularioComponent } from './auth/pages/formulario/formulario.component';
 import { MapComponent } from './auth/pages/map/map.component';
 import { MapapageComponent } from './administrador/pages/mapapage/mapapage.component';
+import { YahooWeatherComponent } from './auth/pages/yahoo-weather/yahoo-weather.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MapapageComponent } from './administrador/pages/mapapage/mapapage.compo
     AppComponent,
     MapComponent,
     MapapageComponent,
-    
+    YahooWeatherComponent,
+
     //FormularioComponent,
   ],
   imports: [

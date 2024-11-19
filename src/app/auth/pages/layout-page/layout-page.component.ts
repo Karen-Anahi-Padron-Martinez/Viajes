@@ -8,17 +8,24 @@ import { Component } from '@angular/core';
 export class LayoutPageComponent {
   public sidebarItem=[
     {label:'Inicio', icon:'home', url:'./inicio'},
+    {label:'Clima', icon:'cloud',url:'./yahoo-weather'},
     {label:'Lugares', icon:'stars', url:'./listalugar'},
     {label:'Experiencias', icon:'stars', url:'./experiencias'},
     {label:'Paquetes', icon:'folder', url:'./paquetes'},
     {label:'Paquete personalizado', icon:'folder_open', url:'./formulario'},
     {label:'Contacto Agencias', icon:'assistant', url:'./agencias'},
     {label:'Ubicacion',icon:'location_on',url:'./mapa'},
+<<<<<<< Updated upstream
     {label: 'Información de Paises',icon:'flag',url:'./pais'},
     //{label: 'Aeropuertos',icon:'flight',url:'./air'},
     {label: 'Videos en Vivo',icon:'tour',url:'./twitch'},
    //{label: 'Turismo',icon:'tour',url:'./streaming'},
     //{label: 'Hoteles Info',icon:'flights_and_hotels',url:'./info'},
+=======
+    {label:'SitiosBnb', icon:'stars', url:'./sitiosbnb'},
+    {label: 'Hoteles Info',icon:'flights_and_hotels',url:'./info'},
+>>>>>>> Stashed changes
     {label:'Administrador', icon:'label_important', url:'./login'},
+    {label:'Pagos',icon:'pay',url:'./pagos'}
   ]
 }

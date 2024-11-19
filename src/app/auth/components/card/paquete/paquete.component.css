@@ -1,0 +1,34 @@
+/* estilos.css o global.css */
+.snackbar-success {
+  background-color: #4caf50; /* Verde para éxito */
+  color: #fff; /* Texto blanco */
+  font-size: 16px;
+  text-align: center;
+}
+.sky-blue-button {
+  background-color: #81e96a; /* Azul cielo */
+  color: white; /* Texto blanco */
+  border: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.sky-blue-button:hover {
+  background-color: #2d975b; /* Azul más oscuro para hover */
+}
+
+.sky-blue-button:active {
+  background-color: #179a20; /* Azul más oscuro al presionar */
+}
+.mat-card-actions {
+  display: flex;
+  justify-content: space-between; /* Distribuye el espacio uniformemente */
+  gap: 10px; /* Espacio entre botones */
+}
+
+.mat-card-actions button {
+  flex: 1; /* Cada botón ocupará la misma proporción de espacio */
+}

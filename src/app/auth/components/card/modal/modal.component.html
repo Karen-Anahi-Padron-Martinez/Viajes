@@ -1,24 +1,23 @@
 <div class="modal-header">
   <div class="h4"> Pulsa ok</div>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span> <!-- Aquí puedes agregar el símbolo de cierre (X) si lo deseas -->
-
+    <span aria-hidden="true">&times;</span>
   </button>
+</div>
 
-
-
-  <div class="modal-body">
-    <h3> Datos de Compra</h3>
-    <hr>
-    <div *ngFor="let item of items">
-      <p>
-        <b>Nombre: </b>{{ item.name }}<br>
-        <b>Unidades: </b>{{ item.quantity }}<br>
-        <b>Unidades/Cantidad: </b>${{ item.unit_amount.value }}
-      </p>
-    </div>
-    <hr>
-    <h3><b> Total: $</b>{{ amount }}</h3>
+<div class="modal-body">
+  <h3> Datos de Compra</h3>
+  <hr>
+  <div *ngFor="let item of items">
+    <p>
+      <b>Nombre: </b>{{ item.name }}<br>
+      <b>Unidades: </b>{{ item.quantity }}<br>
+      <b>Unidades/Cantidad: </b>${{ item.unit_amount.value }}
+    </p>
   </div>
+  <hr>
+  <h3><b> Total: $</b>{{ amount }}</h3>
 
-
+  <!-- Botón para descargar el PDF -->
+  <button (click)="downloadPDF()">Descargar PDF</button>
+</div>

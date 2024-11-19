@@ -1,0 +1,11 @@
+<div *ngIf="lodgings.length > 0; else noData">
+  <div *ngFor="let lodging of lodgings" class="lodging-card">
+    <h3>{{ lodging.name }}</h3>
+    <p>Ubicación: {{ lodging.location }}</p>
+    <p>Precio: {{ lodging.price }}</p>
+    <img [src]="lodging.imageUrl" alt="{{ lodging.name }}" />
+  </div>
+</div>
+<ng-template #noData>
+  <p>No se encontraron resultados.</p>
+</ng-template>

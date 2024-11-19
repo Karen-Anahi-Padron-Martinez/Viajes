@@ -6,6 +6,7 @@ export interface Experiencia {
   servicio: string;
   costo: string;
   contacto: string;
+  coordenadas: string;
   alt_img?:string;
   selected?: boolean; // Propiedad opcional para manejar la selección
 
