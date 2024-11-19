@@ -27,4 +27,8 @@ export class StoragesService {
   clear(): void {
     localStorage.removeItem('cart');
   }
+
 }
+
+}
+

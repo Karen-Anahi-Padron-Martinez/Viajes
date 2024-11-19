@@ -47,6 +47,8 @@ import { ItinerarioComponent } from './components/card/itinerario/itinerario.com
 import { RegistroComponent } from './pages/registro/registro.component';
 import { MapapageComponent } from './pages/mapapage/mapapage.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { ProfileComponent } from './pages/perfil/profile.component';
+
 
 
 
@@ -94,7 +96,11 @@ import { ChatComponent } from './components/chat/chat.component';
     ListatraComponent,
     ItinerarioComponent,
     RegistroComponent,
+
     ChatComponent,
+
+    ProfileComponent,
+
     
     
 

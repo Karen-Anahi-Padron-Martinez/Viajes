@@ -9,6 +9,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { CartItemModel } from '../../../model/cart-item-models';
 import { StoragesService } from '../../../services/storage.service';
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html'
