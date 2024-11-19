@@ -16,7 +16,7 @@ export class PaquetesComponent implements OnInit {
   constructor(
     private paquetesService: PaquetesService,
     private itinerariosService: ItinerariosService,
-  ){} 
+  ){}
   ngOnInit(): void {
     this.paquetesService.getPaquetes()
     .subscribe(paquetes => this.paquetes = paquetes);

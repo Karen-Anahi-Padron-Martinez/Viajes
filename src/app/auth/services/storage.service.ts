@@ -1,3 +1,4 @@
+
 import { CartItemModel } from './../model/cart-item-models'; // Import CartItemModel
 
 import { Injectable } from '@angular/core';
@@ -26,4 +27,8 @@ export class StoragesService {
   clear(): void {
     localStorage.removeItem('cart');
   }
+
 }
+
+}
+

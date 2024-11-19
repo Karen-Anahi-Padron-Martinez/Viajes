@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Consulta el Clima</h1>
+  <div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="city"
+      placeholder="Ingresa el nombre de la ciudad"
+      class="city-input"
+    />
+    <button (click)="getWeather()" class="search-button">Buscar</button>
+  </div>
+
+  <div *ngIf="weatherData" class="weather-info">
+    <h2>Clima en {{ weatherData.location.city }}</h2>
+    <p>
+      Temperatura:
+      {{ convertToCelsius(weatherData.current_observation.condition.temperature) | number: '1.0-1' }} °C
+    </p>
+    <p>Clima: {{ weatherData.current_observation.condition.text }}</p>
+  </div>
+</div>

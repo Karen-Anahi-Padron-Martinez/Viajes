@@ -42,6 +42,9 @@ import { CartItemComponent } from './components/card/cart-item/cart-item.compone
 import { NgxPayPalModule } from 'ngx-paypal'; 
 import { CartComponent } from './components/card/cart/cart.component';
 import { ModalComponent } from './components/card/modal/modal.component';
+import { SitiosbnbComponent } from './pages/sitiosbnb/sitiosbnb.component';
+import { PagosComponent } from './pages/pagos/pagos.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { MapComponent } from './pages/map/map.component';
 import { HotelInfoComponent } from './pages/hotel-info/hotel-info.component';
@@ -94,6 +97,9 @@ import { LiveStreamsComponent } from './pages/twich/live-streams.component';
     CartComponent,
     CartItemComponent,
     ModalComponent,
+    SitiosbnbComponent,
+    PagosComponent,
+
 
     HotelInfoComponent,
     CountryComponent,
@@ -113,6 +119,7 @@ import { LiveStreamsComponent } from './pages/twich/live-streams.component';
     MaterialModule,
     FormsModule,
     NgxPayPalModule,
+    MatSnackBarModule
 
 
   ]
