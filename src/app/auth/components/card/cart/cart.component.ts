@@ -161,7 +161,7 @@ export class CartComponent implements OnInit {
       this.cartItems.splice(i, 1);
     }
     this.total = this.getTotal();
-    this.storageService.setCart(this.cartItems); 
+    this.storageService.setCart(this.cartItems);
   }
 
 
@@ -170,6 +170,15 @@ export class CartComponent implements OnInit {
     modalRef.componentInstance.items = items;
     modalRef.componentInstance.amount = amount;
 }
+formatCurrency(amount: number): string {
+  return amount.toLocaleString('es-MX', {
+    style: 'currency',
+    currency: 'MXN',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
+
 
 
 }

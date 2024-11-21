@@ -1,5 +1,6 @@
 <p *ngIf="cartItem">
   <strong>{{ cartItem.paqueteNombre }}</strong>
-  <strong>({{ cartItem.qty }} units)</strong>
-  <strong>Total: ${{ cartItem.qty * cartItem.paqueteCosto }}</strong>
+  <strong>(  {{ cartItem.qty }} unidad/es))</strong>
+  <strong>Total:  {{ cartItem.qty * cartItem.paqueteCosto | currency:'MXN':true:'1.0-2' }}</strong>
+
 </p>
