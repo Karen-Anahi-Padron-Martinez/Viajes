@@ -1,21 +1,47 @@
 <div class="modal-header">
-  <div class="h4"> Pulsa ok</div>
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <div class="h4">Pulsa ok</div>
+  <button type="button" class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal()"
+          [disabled]="!userForm.valid || !isPdfDownloaded">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 
 <div class="modal-body">
   <h3> Datos de Compra</h3>
+  <h4> Por favor ingresa tus datos</h4>
   <hr>
+
+  <!-- Formulario para los datos del usuario -->
+  <form #userForm="ngForm">
+    <div class="form-group">
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" class="form-control" [(ngModel)]="userData.name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Correo Personal:</label>
+      <input type="email" id="email" class="form-control" [(ngModel)]="userData.email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="card">Cuenta de Tarjeta:</label>
+      <input type="text" id="card" class="form-control" [(ngModel)]="userData.card" name="card" required>
+    </div>
+  </form>
+
+  <hr>
+
+  <!-- Información de los paquetes -->
   <div *ngFor="let item of items">
     <p>
-      <b>Nombre: </b>{{ item.name }}<br>
+      <b>Nombre del Paquete: </b>{{ item.name }}<br>
       <b>Unidades: </b>{{ item.quantity }}<br>
-      <b>Unidades/Cantidad: </b>${{ item.unit_amount.value }}
+      <b>Cantidad: </b>${{ item.unit_amount.value }}
     </p>
   </div>
   <hr>
+
   <h3><b> Total: $</b>{{ amount }}</h3>
 
   <!-- Botón para descargar el PDF -->

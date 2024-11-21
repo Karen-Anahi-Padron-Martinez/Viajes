@@ -20,9 +20,9 @@ export class LayoutPageComponent {
     {label: 'Videos en Vivo',icon:'tour',url:'./twitch'},
    //{label: 'Turismo',icon:'tour',url:'./streaming'},
     //{label: 'Hoteles Info',icon:'flights_and_hotels',url:'./info'},
-    {label:'SitiosBnb', icon:'stars', url:'./sitiosbnb'},
+   // {label:'SitiosBnb', icon:'stars', url:'./sitiosbnb'},
     {label: 'Hoteles Info',icon:'flights_and_hotels',url:'./info'},
     {label:'Administrador', icon:'label_important', url:'./login'},
-    {label:'Pagos',icon:'pay',url:'./pagos'}
+    {label:'Pagos',icon:'money',url:'./pagos'}
   ]
 }

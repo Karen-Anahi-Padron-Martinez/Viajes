@@ -9,10 +9,11 @@
 
 <div *ngIf="cartItems.length < 1">
   <div class="alert alert-info text-center">
-    <h4>Your Cart is Empty</h4>
+    <h4>Su carrito está vacío</h4>
   </div>
 </div>
 <div>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
 <div *ngIf="cartItems.length > 0">
   <div class="alert alert-info text-center">
@@ -34,10 +35,11 @@
 </div>
 
 <div class="alert alert-warning text-center">
-  <strong>Total: </strong>{{total}}
+  <strong>Total: </strong>{{ formatCurrency(total) }}
+
 </div>
 <button class="btn btn-outline-danger btn-block mb-2" (click)="emptyCart()">
-  <i class="fas fa-ban"></i>Empty Cart
+  <i class="fas fa-ban"></i>Vaciar Carrito
 </button>
 <ngx-paypal [config]="payPalConfig"></ngx-paypal>
 </div>

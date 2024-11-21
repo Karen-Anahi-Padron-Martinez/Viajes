@@ -16,4 +16,5 @@ export class CartItemComponent implements OnInit {
   ngOnInit(): void {
     // Any logic you want to run when this component initializes can be placed here
   }
+
 }
