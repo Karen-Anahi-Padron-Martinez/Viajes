@@ -5,9 +5,10 @@ import { Router } from "@angular/router";
 
 @Injectable({ providedIn: "root" })
 export class AuthServices {
+  private baseUrl: string = 'https://serverkaren-production.up.railway.app';
 
   //private baseUrl: string = 'https://backend-production-70c9.up.railway.app';
-  private baseUrl: string = 'http://localhost:3000';
+  //private baseUrl: string = 'http://localhost:3000';
 
   constructor(private http: HttpClient,
               private router: Router,
