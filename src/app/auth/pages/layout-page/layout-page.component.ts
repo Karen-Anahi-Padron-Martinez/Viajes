@@ -22,7 +22,7 @@ export class LayoutPageComponent {
     //{label: 'Hoteles Info',icon:'flights_and_hotels',url:'./info'},
    // {label:'SitiosBnb', icon:'stars', url:'./sitiosbnb'},
     {label: 'Hoteles Info',icon:'flights_and_hotels',url:'./info'},
-    {label:'Administrador', icon:'label_important', url:'./login'},
+    //{label:'Administrador', icon:'label_important', url:'./login'},
     {label:'Pagos',icon:'money',url:'./pagos'}
   ]
 }
