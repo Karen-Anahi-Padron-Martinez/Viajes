@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ThemeService } from '../../services/theme.service';
+
 
 @Component({
   selector: 'app-layout-page',
@@ -6,6 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './layout-page.component.css',
 })
 export class LayoutPageComponent {
+  constructor(private themeService: ThemeService) {}
+
+  toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+  }
   public sidebarItem=[
     {label:'Inicio', icon:'home', url:'./inicio'},
     {label:'Clima', icon:'cloud',url:'./yahoo-weather'},

@@ -9,6 +9,9 @@
     />
     <button (click)="getWeather()" class="search-button">Buscar</button>
   </div>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet">
+
+
 
   <div *ngIf="weatherData" class="weather-info">
     <h2>Clima en {{ weatherData.location.city }}</h2>

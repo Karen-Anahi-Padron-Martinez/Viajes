@@ -1,3 +1,77 @@
 mat-toolbar {
   background-color: black;
 }
+/* Asegúrate de que el fondo sea negro */
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilo para el botón de alternar modo oscuro/claro */
+.dark-mode-toggle {
+  position: fixed; /* Fija el botón en la pantalla */
+  top: 20px; /* Ubica el botón en la parte superior */
+  right: 20px; /* Y en el lado derecho */
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo ligeramente oscuro */
+  color: white; /* Color de texto blanco */
+  border: none; /* Sin borde */
+  border-radius: 30px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado dentro del botón */
+  font-size: 24px; /* Tamaño grande para los iconos */
+  cursor: pointer; /* Cambia el cursor cuando pasa por encima */
+  transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+}
+
+/* Efecto de hover: cuando el usuario pasa el mouse sobre el botón */
+.dark-mode-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.4); /* Fondo más brillante */
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+}
+
+/* Efecto cuando el botón está presionado */
+.dark-mode-toggle:active {
+  transform: scale(1); /* Vuelve al tamaño original */
+}
+
+/* Opcional: Estilo de enfoque para accesibilidad */
+.dark-mode-toggle:focus {
+  outline: none; /* Elimina el contorno */
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5); /* Añade sombra al enfoque */
+}
+
+.dark-mode-toggle {
+  position: fixed; /* Fija el botón en la pantalla */
+  top: 20px; /* Ubica el botón en la parte superior */
+  right: 20px; /* Y en el lado derecho */
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo ligeramente oscuro */
+  color: white; /* Color de texto blanco */
+  border: none; /* Sin borde */
+  border-radius: 30px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado dentro del botón */
+  font-size: 24px; /* Tamaño grande para los iconos */
+  cursor: pointer; /* Cambia el cursor cuando pasa por encima */
+  transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+}
+
+/* Efecto de hover: cuando el usuario pasa el mouse sobre el botón */
+.dark-mode-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.4); /* Fondo más brillante */
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+}
+
+/* Efecto cuando el botón está presionado */
+.dark-mode-toggle:active {
+  transform: scale(1); /* Vuelve al tamaño original */
+}
+
+/* Opcional: Estilo de enfoque para accesibilidad */
+.dark-mode-toggle:focus {
+  outline: none; /* Elimina el contorno */
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5); /* Añade sombra al enfoque */
+}
