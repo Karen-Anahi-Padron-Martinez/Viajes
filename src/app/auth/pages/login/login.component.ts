@@ -55,7 +55,7 @@ export class LoginComponent {
       }
     );
   }
-
+  
 // Método para iniciar sesión con Facebook
 signInWithFacebook() {
   this.facebookService.loginu()
@@ -75,5 +75,8 @@ signInWithFacebook() {
       console.error('Error during Facebook login:', error);
       alert('Error: ' + error);
     });
+}
+goToRegister() {
+  this.router.navigate(['/administrador/registro']); // Redirige a la página de registro
 }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthServices } from '../../services/auth.service';
 
 @Component({
   selector: 'app-layout-page',
@@ -6,6 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './layout-page.component.css',
 })
 export class LayoutPageComponent {
+  constructor ( private auth: AuthServices){
+  }
+
+  logout(){
+    this.auth.logout();
+  }
   public sidebarItem=[
     {label:'Inicio', icon:'home', url:'./inicio'},
     {label:'Clima', icon:'cloud',url:'./yahoo-weather'},

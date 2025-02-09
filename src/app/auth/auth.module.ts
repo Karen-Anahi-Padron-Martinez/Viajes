@@ -53,6 +53,7 @@ import { AirportsComponent } from './pages/airport/airports.component';
 import { VideoListComponent } from './pages/video/video-list.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { LiveStreamsComponent } from './pages/twich/live-streams.component';
+import { RegistroComponent } from '../administrador/pages/registro/registro.component';
 
 
 
@@ -64,6 +65,7 @@ import { LiveStreamsComponent } from './pages/twich/live-streams.component';
     PaquetesComponent,
     FormularioComponent,
     LoginComponent,
+    //RegistroComponent,
     InicioComponent,
     CardComponent,
     HotelImagePipe,

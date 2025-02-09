@@ -14,7 +14,7 @@ export class AuthServices {
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('rol'); // Eliminar el rol también al hacer logout
-    this.router.navigateByUrl('/auth/login');
+    this.router.navigateByUrl('/');
   }
 
   login(usuario: string, pass: string): Observable<{ autenticado: boolean; token: string | null; userId: number; rol: number } | null> {
