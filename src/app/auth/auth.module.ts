@@ -54,6 +54,8 @@ import { VideoListComponent } from './pages/video/video-list.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { LiveStreamsComponent } from './pages/twich/live-streams.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { RegistroComponent } from '../administrador/pages/registro/registro.component';
+
 
 
 
@@ -65,6 +67,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     PaquetesComponent,
     FormularioComponent,
     LoginComponent,
+    //RegistroComponent,
     InicioComponent,
     CardComponent,
     HotelImagePipe,

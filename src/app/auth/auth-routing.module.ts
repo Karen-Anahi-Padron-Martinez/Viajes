@@ -25,6 +25,7 @@ import { LiveStreamsComponent } from './pages/twich/live-streams.component';
 import { SitiosbnbComponent } from './pages/sitiosbnb/sitiosbnb.component';
 import { PagosComponent } from './pages/pagos/pagos.component';
 import { YahooWeatherComponent } from './pages/yahoo-weather/yahoo-weather.component';
+import { RegistroComponent } from '../administrador/pages/registro/registro.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,7 @@ const routes: Routes = [
       { path: 'olvidarpass', component: OlvidarpassComponent},
       { path: 'formulario', component: FormularioComponent },
       { path: 'login', component: LoginComponent },
+      //{path: 'administrador/registro',component:RegistroComponent},
       { path: 'inicio', component: InicioComponent},
 
       {path: 'mapa',component: MapComponent},

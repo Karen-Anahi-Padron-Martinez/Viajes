@@ -1,25 +1,35 @@
 <body>
-    <div class="box">
-        <div class="container">
-            <div class="top-header">
-                <header>Iniciar Sesión</header>
+    <div class="login-container">
+      <div class="login-box">
+        <div class="top-header">
+          <header>Bienvenido a Nuestra Agencia de Viajes</header>
+          <p>Explora el mundo con nosotros</p>
+        </div>
+        <div class="login-form">
+          <form (ngSubmit)="onLogin()">
+            <div class="form-group">
+              <i class="bx bx-user"></i>
+              <input [(ngModel)]="usuario" name="usuario" type="text" class="input" placeholder="Usuario" required>
             </div>
-            <div class="login-form">
-                <form (ngSubmit)="onLogin()">
-                    <div class="form-group">
-                        <input [(ngModel)]="usuario" name="usuario" type="text" class="input" placeholder="Usuario" required>
-                    </div>
-                    <div class="form-group">
-                        <input [(ngModel)]="pass" name="pass" type="password" class="input" placeholder="Contraseña" required>
-                        <i class="bx bx-lock-alt"></i>
-                    </div>
-                    <button mat-raised-button type="submit" class="button">Iniciar sesión</button>
-                    <button mat-raised-button color="primary" (click)="signInWithFacebook()">
-                        <i class="fab fa-facebook-f"></i>
-                        Iniciar sesión con Facebook
-                      </button>
-                      
-                    <!--<div class="bottom">
+            <div class="form-group">
+              <i class="bx bx-lock"></i>
+              <input [(ngModel)]="pass" name="pass" type="password" class="input" placeholder="Contraseña" required>
+            </div>
+            <button mat-raised-button type="submit" class="login-button">Iniciar sesión</button>
+            <button mat-raised-button color="primary" class="facebook-button" (click)="signInWithFacebook()">
+              <i class="fab fa-facebook-f"></i> Iniciar sesión con Facebook
+            </button>
+          </form>
+          <div class="register-link">
+            <p>¿No tienes una cuenta? <a (click)="goToRegister()">Regístrate aquí</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  
+  
+<!--<div class="bottom">
                          <div class="left">
                             <input class="form-check-input" type="checkbox" value="" id="form" checked />
                             <label class="form-check-label" for="form">Recordar contraseña </label>
@@ -28,8 +38,3 @@
                             <a routerLink="/auth/olvidarpass">¿Olvidaste la contraseña?</a>
                         </div>
                     </div>-->
-                </form>
-            </div>
-        </div>
-    </div>
-</body>

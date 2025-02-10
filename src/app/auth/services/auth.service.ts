@@ -5,8 +5,6 @@ import { Router } from "@angular/router";
 
 @Injectable({ providedIn: "root" })
 export class AuthServices {
-
-  //private baseUrl: string = 'https://backend-production-70c9.up.railway.app';
   private baseUrl: string = 'http://localhost:3000';
 
   constructor(private http: HttpClient,
@@ -15,10 +13,11 @@ export class AuthServices {
 
   logout(){
     localStorage.removeItem('token');
-    this.router.navigateByUrl('/auth/login');
+    localStorage.removeItem('rol'); // Eliminar el rol también al hacer logout
+    this.router.navigateByUrl('/');
   }
 
-  login(usuario: string, pass: string): Observable<{ autenticado: boolean; token: string | null; userId: number } | null> {
+  login(usuario: string, pass: string): Observable<{ autenticado: boolean; token: string | null; userId: number; rol: number } | null> {
     const url = `${this.baseUrl}/login`;
     const body = { usuario, pass };
     const httpOptions = {
@@ -27,12 +26,13 @@ export class AuthServices {
       })
     };
 
-    return this.http.post<{ autenticado: boolean; token: string | null; userId: number }>(url, body, httpOptions)
+    return this.http.post<{ autenticado: boolean; token: string | null; userId: number; rol: number }>(url, body, httpOptions)
       .pipe(
         map(response => {
           if (response.autenticado && response.token) {
             localStorage.setItem('token', response.token);
-            localStorage.setItem('userId', response.userId.toString()); // Guarda userId en localStorage
+            //localStorage.setItem('userId', response.userId.toString());
+            //localStorage.setItem('rol', response.rol.toString()); // Guardamos el rol en localStorage
           }
           return response;
         }),
@@ -42,21 +42,26 @@ export class AuthServices {
         })
       );
   }
- 
+
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
 
-
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
-    return !!token; // Verifica si el token existe y es válido (podrías agregar más lógica aquí)
+    return !!token; // Verifica si el token existe y es válido 
   }
+
+  getRol(): number | null {
+    const rol = localStorage.getItem('rol');
+    return rol ? parseInt(rol, 10) : null; // Devuelve el rol almacenado o null
+  }
+
   saveFacebookUserData(userData: any) {
     return this.http.post(`${this.baseUrl}/facebook-login`, userData);
   }
+
   getUserData(): Observable<any> {
     return this.http.get(`${this.baseUrl}/profile`); // Asegúrate de tener un endpoint que devuelva los datos del perfil
   }
-  
 }

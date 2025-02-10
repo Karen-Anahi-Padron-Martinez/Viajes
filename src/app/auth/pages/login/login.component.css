@@ -1,171 +1,107 @@
-/* Color de fondo del cuerpo */
 body {
-    background: linear-gradient(10deg, #9059ba, #d0bbf1); /*Color de fondo de la página*/
-    background-attachment: fixed; /*Estilo del color*/
-  }
-  .introduccion {
-    text-align: center; /*Alineación del texto*/
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Letra estilo*/
-    font-size: 50px; /*Tamaño del texto*/
-    padding: 20px; /* pading */
-    color: rgb(0, 0, 0); /* color texto */
-    text-align: center; /*Alineación del texto*/
-  }
-  .box{
-    display: flex; /*Dónde colocar el contenedor (esquina, abajo, etc.)*/
-    justify-content: center; /*Justificación del contenedor*/
-    align-items: center; /*Alineación del item*/
-    min-height: 90vh; /*Espaciado entre la caja de login y el navbar*/
-  }
-  
-  /*Contenedor de afuera*/
-  .container {
-    background-color: #ffffff; /*Color de fondo del login*/
-    padding: 20px; /*Espacio que ocupa el login a lo largo*/
-    border-radius: 8px; /*Radio del borde del login*/
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /*Color de la sombra del login*/
-    max-width: 400px; /*Espacio que ocupa a los costados el login*/
-    width: 100%; /*Ancho del documento a los lados*/
-  }
-  
-  /* Contenedor iniciar sesión*/
-  .submit{
-    border: none; /*Borde de la caja de submit*/
-    border-radius: 30px; /**/
-    font-size: 15px;
-    height: 45px;
-    outline: none;
-    width: 100%;
-    background: rgba(183, 183, 183, 0.9); /* Color del botón */
-    cursor: pointer;
-    transition: .3s;
-  }
-  .submit:hover{
-    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.6);
-  }
-  
-  .input {
-    width: 80%;
-    height: 30px;
-    padding: 20px 0px 20px 40px;
-    border-radius: 999px;
-    border: solid 1px #828282;
-    transition: all .2s ease-in-out;
-    outline: none;
-    opacity: 0.8;
-  }
-  
-  /*  background: linear-gradient(135deg, #88ccff, #ff6699);    Es un color mas tenue*/
-  .presentacion {
-    text-align: justify;
-    font-size: 20px;
-    margin: 35px 100px 30px 100px;
-    color: white;
-  }
-  
-  /* Texto de Iniciar Sesión */
-  header{
-    color: black;
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    padding: 0 0 35px 0; 
-    margin-top: 40px;
-  }
-  
-  /* Contenedor input */
-  .input-field{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-  
-  /* Contenedor usuario y contraseña */
-  .input-field .input{
-    height: 45px; /*Tamaño alto del contenedor*/
-    width: 100%; /*Tamaño largo del contenedor*/
-    border: none; /*Borde del contenedor*/
-    outline: none; /*Fuera de la línea*/
-    border-radius: 30px; /*Radio del borde*/
-    color: black; /*Color del texto dentro del contenedor*/
-    padding: 0 0 0 30px; /*Margen dentro del contenedor a la izquierda*/
-    background: rgba(255,255,255,0.6); /*Color del relleno del contenedor*/
-    border: solid 1px #000000; /*Color del borde del contenedor*/
-  }
-  
-  i{
-    position: relative;
-    top: -310px;
-    left: 17px;
-    color: #000000;
-  }
-  
-  /* Letra contenedor */
-  ::-webkit-input-placeholder{
-    color: #000000;
-  }
-  
-  .bottom{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: small;
-    color: black;
-    margin-bottom: 10px;
-  }
-  
-  .register{
-    border: none;
-    border-radius: 30px;
-    font-size: 15px;
-    height: 45px;
-    outline: none;
-    width: 100%;
-    background: rgba(255,255,255,0.9);
-    cursor: pointer;
-    transition: .3s;
-  }
-  .register:hover{
-    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.6);
-  }
-  
-  .left{
-    display: flex;
-  }
-  /* olvidar contraseña style */
-  label a{
-    color: black;
-    text-decoration: none;
-  }
-  
-  /* Buscador */
-  .container-input {
-    position: relative;
-  }
-  
-  .input {
-    width: 200px;
-    padding: 20px 0px 20px 40px;
-    border-radius: 999px;
-    border: solid 1px #333;
-    transition: all .2s ease-in-out;
-    outline: none;
-    opacity: 0.8;
-  }
-  
-  .container-input svg{
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translate(0, -50%);
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('https://verestmagazine.com/wp-content/uploads/2023/10/Dolores-Hidalgo-Guanajuato-1.jpg') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  }
-  
-  /* Fondo de icono*/
-  .button {
-    font-size: 15px;
-    height: 45px;
-    outline: none;
-    width: 100%;
-    margin-bottom: 10px;;
-  }
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 350px;
+}
+
+.top-header header {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.top-header p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 40px;
+  border: none;
+  border-radius: 5px;
+  background: #f1f1f1;
+  font-size: 1rem;
+}
+
+.form-group i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  font-size: 1.2rem;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background: #0056b3;
+}
+
+.facebook-button {
+  width: 100%;
+  padding: 10px;
+  background: #3b5998;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.facebook-button:hover {
+  background: #2d4373;
+}
+
+.register-link p {
+  margin-top: 10px;
+}
+
+.register-link a {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}

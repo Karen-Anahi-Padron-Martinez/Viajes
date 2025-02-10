@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
+import { AuthServices } from '../../services/auth.service';
 
 
 @Component({
@@ -8,10 +9,17 @@ import { ThemeService } from '../../services/theme.service';
   styleUrl: './layout-page.component.css',
 })
 export class LayoutPageComponent {
+
   constructor(private themeService: ThemeService) {}
 
   toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
+
+  constructor ( private auth: AuthServices){
+  }
+
+  logout(){
+    this.auth.logout();
   }
   public sidebarItem=[
     {label:'Inicio', icon:'home', url:'./inicio'},
@@ -29,7 +37,7 @@ export class LayoutPageComponent {
     //{label: 'Hoteles Info',icon:'flights_and_hotels',url:'./info'},
    // {label:'SitiosBnb', icon:'stars', url:'./sitiosbnb'},
     {label: 'Hoteles Info',icon:'flights_and_hotels',url:'./info'},
-    {label:'Administrador', icon:'label_important', url:'./login'},
+    //{label:'Administrador', icon:'label_important', url:'./login'},
     {label:'Pagos',icon:'money',url:'./pagos'}
   ]
 }

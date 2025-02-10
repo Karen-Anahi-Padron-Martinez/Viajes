@@ -3,10 +3,12 @@ import { AuthServices } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FacebookService } from '../../services/facebook.service';
 import { UserService } from '../../services/user.service';
+
 interface LoginResponse {
   autenticado: boolean;
   token: string | null;
   userId: number;
+  rol?: number; // Agregamos el rol del usuario
 }
 
 @Component({
@@ -30,10 +32,21 @@ export class LoginComponent {
     this.authServices.login(this.usuario, this.pass).subscribe(
       (response: LoginResponse | null) => {
         if (response && response.autenticado) {
-          // Redirigir al usuario a la página principal o a la ruta que corresponda
-          this.router.navigate(['/administrador/listado']);
+          const rol = response.rol ?? 2;
+          // Guardar el token en localStorage
+          localStorage.setItem('token', response.token || '');
+          //localStorage.setItem('userId', response.userId.toString());
+          //localStorage.setItem('rol', rol); // Guardamos el rol
+
+          // Redirigir según el rol
+          if (response.rol === 1) {
+            this.router.navigate(['/administrador/listado']);
+          } else if (response.rol === 2) {
+            this.router.navigate(['/auth']);
+          } else {
+            alert('Rol desconocido, contacte con soporte.');
+          }
         } else {
-          // Mostrar un mensaje de error si la autenticación falla
           alert('Usuario o contraseña incorrectos');
         }
       },
@@ -42,7 +55,7 @@ export class LoginComponent {
       }
     );
   }
-
+  
 // Método para iniciar sesión con Facebook
 signInWithFacebook() {
   this.facebookService.loginu()
@@ -62,5 +75,8 @@ signInWithFacebook() {
       console.error('Error during Facebook login:', error);
       alert('Error: ' + error);
     });
+}
+goToRegister() {
+  this.router.navigate(['/administrador/registro']); // Redirige a la página de registro
 }
 }
