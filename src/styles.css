@@ -1,14 +1,69 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.spacer{
-    flex: 1 1 auto;
+:root {
+  --bg-color: #ffffff; /* Fondo claro de la página */
+  --text-color: #000000; /* Color del texto en modo claro */
+  --card-bg-color: #f4f4f4; /* Fondo claro de las tarjetas */
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.dark-mode {
+  --bg-color: #121212; /* Fondo oscuro de la página */
+  --text-color: #ffffff; /* Texto claro */
+  --card-bg-color: #333333; /* Fondo oscuro de las tarjetas */
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  background-color: var(--bg-color) !important; /* Cambia el fondo del body */
+  color: var(--text-color) !important; /* Cambia el color del texto */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, mat-divider {
+  color: var(--text-color); /* Cambia solo el color de los títulos */
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 30px;
+}
+
+.grid .col-12 {
+  flex: 1 1 calc(33.333% - 20px);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.paquete-card, mat-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--card-bg-color); /* Fondo de las tarjetas */
+  color: inherit; /* El color del texto no cambia */
+  border-radius: 8px; /* Bordes redondeados para las tarjetas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para las tarjetas */
+  transition: background-color 0.3s ease; /* Transición suave al cambiar de fondo */
+}
+
+mat-card-image {
+  object-fit: cover;
+  height: 200px;
+  width: 100%;
+  padding: 5px;
+}
+
+mat-card-content {
+  flex: 1;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .grid .col-12 {
+      flex: 1 1 calc(50% - 20px); /* 2 tarjetas por fila */
+  }
+}
+
+@media (max-width: 480px) {
+  .grid .col-12 {
+      flex: 1 1 100%; /* 1 tarjeta por fila */
+  }
+}

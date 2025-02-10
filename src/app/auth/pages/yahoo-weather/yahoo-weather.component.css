@@ -1,21 +1,24 @@
 html, body {
   height: 100%;
   margin: 0;
+  font-family: 'Roboto', sans-serif;  /* Tipografía más moderna y legible */
+  background-color: #f4f4f4;  /* Fondo suave en el body */
 }
 
 .container {
   background-image: url('../../../../assets/clima1.png');
   background-size: cover;
   background-position: center;
-  height: 90vh; /* Asegura que el fondo cubra toda la pantalla */
+  background-blur: 5px;  /* Efecto de desenfoque suave */
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: center;  /* Centrado vertical */
   text-align: center;
-  color: white;
-  background-attachment: fixed; /* Para que el fondo no se mueva */
+  color: rgb(223, 20, 20);
+  padding: 20px;
 }
+
 
 
 .search-box {
@@ -23,38 +26,79 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;  /* Espaciado entre el input y el botón */
 }
 
 .city-input {
-  padding: 8px;
+  padding: 10px;
   font-size: 16px;
-  width: 300px;
-  margin-right: 10px;
-  border-radius: 4px;
+  width: 250px;
+  background-color: rgba(165, 228, 228, 0.8);  /* Fondo más suave */
+  border-radius: 8px;
+  border: 2px solid rgba(165, 228, 228, 0.5);  /* Sutil borde para el input */
 }
 
 .search-button {
-  padding: 8px 16px;
+  padding: 10px 20px;
   font-size: 16px;
-  background-color: #ff6f00; /* Naranja */
+  background-color: #4a38ed;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .search-button:hover {
-  background-color: #d85e00; /* Rojo oscuro */
+  background-color: #d85e00;  /* Rojo oscuro */
 }
 
 .weather-info {
-  background-color: #cccccc; /* Caja gris */
+  width: 600px;  /* Ancho específico */
+  height: auto;  /* Ajusta la altura automáticamente */
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-image: url('../../../../assets/cuadro.png');  /* Manteniendo la imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+
+  /* Centrado dentro del contenedor padre */
+  margin: 0 auto;  /* Centrado horizontal */
+  display: flex;
+  flex-direction: column;  /* Asegura que los elementos se apilen verticalmente */
+  justify-content: flex-start;  /* Alinea los elementos desde el inicio del contenedor */
+  align-items: center;  /* Centrado horizontal de los elementos */
+  text-align: center;  /* Alinea el texto al centro */
 }
 
-h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
+.weather-info > * {
+  margin-bottom: 10px;  /* Espacio entre los elementos dentro del contenedor */
 }
+
+
+.weather-info:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 36px;
+  font-weight: bold;
+  color: #333333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  line-height: 1.4;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);  /* Agregar sombra para mejorar visibilidad */
+}
+
+

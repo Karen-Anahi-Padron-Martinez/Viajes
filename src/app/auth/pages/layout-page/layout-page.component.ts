@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { ThemeService } from '../../services/theme.service';
 import { AuthServices } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-layout-page',
@@ -7,6 +9,12 @@ import { AuthServices } from '../../services/auth.service';
   styleUrl: './layout-page.component.css',
 })
 export class LayoutPageComponent {
+
+  constructor(private themeService: ThemeService) {}
+
+  toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+
   constructor ( private auth: AuthServices){
   }
 
