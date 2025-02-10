@@ -1,5 +1,6 @@
 <div class="container">
   <h1>Consulta el Clima</h1>
+
   <div class="search-box">
     <input
       type="text"
@@ -9,16 +10,25 @@
     />
     <button (click)="getWeather()" class="search-button">Buscar</button>
   </div>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet">
 
+  <!-- Spinner de carga -->
+  <!--<ngx-spinner
+  *ngIf="true"
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+  <h3 style="color: #fff;">Realizando...</h3>
+</ngx-spinner>-->
+>
 
-
+  <!-- Mostrar el clima solo si hay datos -->
   <div *ngIf="weatherData" class="weather-info">
     <h2>Clima en {{ weatherData.location.city }}</h2>
     <p>
       Temperatura:
       {{ convertToCelsius(weatherData.current_observation.condition.temperature) | number: '1.0-1' }} °C
     </p>
-    <p>Clima: {{ weatherData.current_observation.condition.text }}</p>
+    <p>Clima: {{ translateWeatherCondition(weatherData.current_observation.condition.text) }}</p>
   </div>
 </div>

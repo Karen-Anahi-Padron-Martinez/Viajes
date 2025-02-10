@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { AuthRoutingModule } from './auth-routing.module';
@@ -39,7 +39,7 @@ import { PersonalizadoAtractivoComponent } from './components/card/personalizado
 import { InfoitiComponent } from './pages/infoiti/infoiti.component';
 
 import { CartItemComponent } from './components/card/cart-item/cart-item.component';
-import { NgxPayPalModule } from 'ngx-paypal'; 
+import { NgxPayPalModule } from 'ngx-paypal';
 import { CartComponent } from './components/card/cart/cart.component';
 import { ModalComponent } from './components/card/modal/modal.component';
 import { SitiosbnbComponent } from './pages/sitiosbnb/sitiosbnb.component';
@@ -53,6 +53,7 @@ import { AirportsComponent } from './pages/airport/airports.component';
 import { VideoListComponent } from './pages/video/video-list.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { LiveStreamsComponent } from './pages/twich/live-streams.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -108,8 +109,8 @@ import { LiveStreamsComponent } from './pages/twich/live-streams.component';
     SafePipe,
     LiveStreamsComponent,
 
-    
-    
+
+
 
 
   ],
@@ -119,9 +120,10 @@ import { LiveStreamsComponent } from './pages/twich/live-streams.component';
     MaterialModule,
     FormsModule,
     NgxPayPalModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxSpinnerModule
 
-
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AuthModule { }
